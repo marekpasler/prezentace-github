@@ -72,7 +72,7 @@ window.SLIDES = {
     tl.step(); // s1
 
     return {
-      tl,
+      tl, loop: true,
       enter() { if (!REDUCED && !raf) raf = requestAnimationFrame(frame); },
       leave() { cancelAnimationFrame(raf); raf = 0; ctx.clearRect(0, 0, 1920, 1080); },
     };
@@ -273,7 +273,7 @@ window.SLIDES = {
     tl.step();
     let iv = 0, t0 = 0;
     return {
-      tl,
+      tl, loop: true,
       // Octoverse 2025: one new developer every second
       enter(resume) {
         if (!resume) t0 = Date.now();

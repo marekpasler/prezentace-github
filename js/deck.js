@@ -118,10 +118,10 @@
   });
   let idle; addEventListener('mousemove', () => { document.body.classList.remove('hide-cursor'); clearTimeout(idle); idle = setTimeout(() => document.body.classList.add('hide-cursor'), 2000); });
 
-  // pause rAF loops when the tab is hidden
+  // pause rAF loops when the tab is hidden (only slides that run a loop; leave() may reset state)
   document.addEventListener('visibilitychange', () => {
     const s = cur >= 0 && get(all[cur]);
-    if (!s) return;
+    if (!s || !s.loop) return;
     document.hidden ? s.leave && s.leave() : s.enter && s.enter(true);
   });
 
