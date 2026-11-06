@@ -1,0 +1,380 @@
+[
+ {
+  "hash": "6a92b554f2ce036298bda44dc05f719ac3e015ae",
+  "short": "6a92b55",
+  "date": "2026-10-07T21:10:33+02:00",
+  "message": "Add files via upload",
+  "files": 1,
+  "add": 618,
+  "del": 0
+ },
+ {
+  "hash": "0cf8e0e5b2f2c9435e9a7d201a8a39c2504d2ee7",
+  "short": "0cf8e0e",
+  "date": "2026-10-07T21:13:18+02:00",
+  "message": "Rename oktava_web.html to index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "8e3cae39b37088cfbbde9172c24e8e87aa317405",
+  "short": "8e3cae3",
+  "date": "2026-10-07T21:25:40+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 7,
+  "del": 3
+ },
+ {
+  "hash": "3923495b3f48fd7aa89ef8242937f817600b292d",
+  "short": "3923495",
+  "date": "2026-10-07T21:27:39+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "9ecd106bd3db6552b20a875624c2f20558cbcefa",
+  "short": "9ecd106",
+  "date": "2026-10-07T21:29:18+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "0f42c17dd1375717a14cc26b4c63529072883a56",
+  "short": "0f42c17",
+  "date": "2026-10-12T21:39:25+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 21,
+  "del": 6
+ },
+ {
+  "hash": "09abda7c7b4539e94cdf246a4b8d57d6b40aa80f",
+  "short": "09abda7",
+  "date": "2026-10-12T21:44:08+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "ccc1664b4728591e47d6d29a8433bb8b225c57fa",
+  "short": "ccc1664",
+  "date": "2026-10-13T13:59:17+02:00",
+  "message": "Create CNAME",
+  "files": 1,
+  "add": 1,
+  "del": 0
+ },
+ {
+  "hash": "ec31a869d83138ebe0a56f3534f3defff2dd4804",
+  "short": "ec31a86",
+  "date": "2026-10-13T14:00:06+02:00",
+  "message": "Delete CNAME",
+  "files": 1,
+  "add": 0,
+  "del": 1
+ },
+ {
+  "hash": "5f54e59a5d0b7203f36c4fef8430a54959d5fd2c",
+  "short": "5f54e59",
+  "date": "2026-10-13T14:01:50+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "87a9e0a5b82f4ca30710d522b945da95166385c5",
+  "short": "87a9e0a",
+  "date": "2026-10-13T14:02:49+02:00",
+  "message": "Create CNAME",
+  "files": 1,
+  "add": 1,
+  "del": 0
+ },
+ {
+  "hash": "a78baa2490554fdf7de1bc77823c0aaa621c538b",
+  "short": "a78baa2",
+  "date": "2026-10-13T21:55:12+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "dc1dc2851356d3e907b2b0fc9eae254c5ed34820",
+  "short": "dc1dc28",
+  "date": "2026-10-13T21:55:32+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "66c57d78f1faefb53af074ad0fb171ccfb64ae4d",
+  "short": "66c57d7",
+  "date": "2026-10-14T20:57:31+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 137,
+  "del": 6
+ },
+ {
+  "hash": "050a7737dbe9054a5fe5828537ddb44c0d601ed1",
+  "short": "050a773",
+  "date": "2026-10-14T21:04:02+02:00",
+  "message": "Create event.ics",
+  "files": 1,
+  "add": 15,
+  "del": 0
+ },
+ {
+  "hash": "31e309679b1bc45edf6a1ae2610fcf1cd4b0df55",
+  "short": "31e3096",
+  "date": "2026-10-14T21:07:30+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 9,
+  "del": 40
+ },
+ {
+  "hash": "570ed97313d8439a2fdade82d4a437e16a838cb6",
+  "short": "570ed97",
+  "date": "2026-10-14T21:11:20+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "304f89507f5109305c6b5a362c3273406a1a5393",
+  "short": "304f895",
+  "date": "2026-10-14T21:18:47+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 145,
+  "del": 241
+ },
+ {
+  "hash": "d9c57dca0181d01254f0e7fb270cf810b7d000f7",
+  "short": "d9c57dc",
+  "date": "2026-10-14T21:21:18+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "08ec41258e976fcb345693260fdc8e41e20a1d76",
+  "short": "08ec412",
+  "date": "2026-10-14T21:21:53+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "441024bad577dfd4ee9b35617b1f951ef4d53854",
+  "short": "441024b",
+  "date": "2026-10-14T21:24:21+02:00",
+  "message": "Update event.ics",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "b1ffc03dbbb6cae1c39139de7a1ba39a714750c9",
+  "short": "b1ffc03",
+  "date": "2026-10-14T21:35:28+02:00",
+  "message": "Update CNAME",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "cda9db97816c885b9bdccf8bc1f932b5fa3d252e",
+  "short": "cda9db9",
+  "date": "2026-10-14T21:36:15+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "9a6840b9a688d4ce97f595729357301ef6b9b06f",
+  "short": "9a6840b",
+  "date": "2026-10-14T22:19:36+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "b63730d5f03f2ad57fc705c6e8dcfdcb9649c108",
+  "short": "b63730d",
+  "date": "2026-10-14T23:05:56+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "b1821cb9d89148db0d3144247051fce1dc4a400c",
+  "short": "b1821cb",
+  "date": "2026-10-23T19:26:24+02:00",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 540,
+  "del": 627
+ },
+ {
+  "hash": "b27e180e0cb2c0b27d2dfd8312eb674d90eb6e1e",
+  "short": "b27e180",
+  "date": "2026-10-23T19:27:33+02:00",
+  "message": "Add files via upload",
+  "files": 1,
+  "add": 7,
+  "del": 0
+ },
+ {
+  "hash": "e6ae9878c8ce525c6e12c5fa6907b2a3b539eb4e",
+  "short": "e6ae987",
+  "date": "2026-10-24T09:07:05Z",
+  "message": "Update index.html",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "b6dd845864b71889356045fa8f0967b91125c0f4",
+  "short": "b6dd845",
+  "date": "2026-10-26T14:15:08+01:00",
+  "message": "Přestavba webu",
+  "files": 17,
+  "add": 838,
+  "del": 479
+ },
+ {
+  "hash": "fceb119ba5bced73171742cbbac99c90f72a0646",
+  "short": "fceb119",
+  "date": "2026-10-26T15:02:03+01:00",
+  "message": "Fix calendar menu hidden under countdown",
+  "files": 1,
+  "add": 3,
+  "del": 1
+ },
+ {
+  "hash": "95d5dd11457959634d39de12d0ebcf9de9ab20d2",
+  "short": "95d5dd1",
+  "date": "2026-10-26T15:15:57+01:00",
+  "message": "uprava textu",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "7c362fe31ee050037a7fde2f1419ca269a6849b8",
+  "short": "7c362fe",
+  "date": "2026-10-26T16:30:17+01:00",
+  "message": "Remove boot typing line, rename afterparty to Pokracovani vecera",
+  "files": 1,
+  "add": 1,
+  "del": 18
+ },
+ {
+  "hash": "4e7819024614be5522a5593f3bcd4645b7f6f2ff",
+  "short": "4e78190",
+  "date": "2026-10-26T16:34:45+01:00",
+  "message": "Fix contrast, padding and blinking status dot",
+  "files": 1,
+  "add": 7,
+  "del": 6
+ },
+ {
+  "hash": "d4224d92aaca4022a3e449f51ad8d4115721cec7",
+  "short": "d4224d9",
+  "date": "2026-10-27T21:33:16+01:00",
+  "message": "Add Google Search Console verification file",
+  "files": 1,
+  "add": 1,
+  "del": 0
+ },
+ {
+  "hash": "8f3de97262366a96bdb83858078c10f87d18fb0f",
+  "short": "8f3de97",
+  "date": "2026-10-29T14:34:11+01:00",
+  "message": "Redesign: halftone portrait plate, Big Shoulders type, tablo",
+  "files": 5,
+  "add": 502,
+  "del": 592
+ },
+ {
+  "hash": "4a8c2013c8ea66c1eca22647b48858dd438eeec8",
+  "short": "4a8c201",
+  "date": "2026-10-29T14:40:06+01:00",
+  "message": "Desktop hero: title and portrait side by side, uncropped portrait",
+  "files": 1,
+  "add": 9,
+  "del": 6
+ },
+ {
+  "hash": "761e348a0821566b50d4d592c22af0a7824764d1",
+  "short": "761e348",
+  "date": "2026-10-29T14:43:45+01:00",
+  "message": "Fix overlapping venue title diacritics",
+  "files": 1,
+  "add": 2,
+  "del": 1
+ },
+ {
+  "hash": "a9abeee34fb0a984f582962456facb0722bf6dd2",
+  "short": "a9abeee",
+  "date": "2026-10-29T16:53:13+01:00",
+  "message": "Fix title reveal flashing before animation",
+  "files": 1,
+  "add": 20,
+  "del": 4
+ },
+ {
+  "hash": "62703c9b324f43e64ed618bbbda8d8982e3cbc25",
+  "short": "62703c9",
+  "date": "2026-10-29T15:55:27Z",
+  "message": "Fotky budeme postupně odhalovat.",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "9cc712dd522f66cd9a682333daa699083997d47e",
+  "short": "9cc712d",
+  "date": "2026-11-04T08:16:11+01:00",
+  "message": "prodej listku zahajen",
+  "files": 1,
+  "add": 1,
+  "del": 1
+ },
+ {
+  "hash": "d414374328df8bcf9a8da3ba7af45b4f267da25b",
+  "short": "d414374",
+  "date": "2026-11-06T17:09:31+01:00",
+  "message": "Tickets: last tickets, room P02, Instagram DM, QR or cash",
+  "files": 1,
+  "add": 6,
+  "del": 4
+ },
+ {
+  "hash": "4060246540661a877aabdfb8f4b45c319cdd2daf",
+  "short": "4060246",
+  "date": "2026-11-06T17:49:19+01:00",
+  "message": "Audit fixes: Instagram calendar link, UTC ics times, title flash on slow fonts, rain resize, remove unused assets",
+  "files": 8,
+  "add": 8,
+  "del": 6
+ }
+]
