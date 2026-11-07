@@ -166,7 +166,7 @@ window.SLIDES = {
     const base = svg('path', { d: `M220 ${Y} H1780`, stroke: '#3d444d', 'stroke-width': 6, fill: 'none' }, s);
     const dots = C.map((c, i) => svg('circle', { cx: X(i), cy: Y, r: Math.min(22, 7 + Math.sqrt(c.add + c.del) * .45), fill: '#1e5c47', stroke: '#5effc4', 'stroke-width': 3 }, s));
     const days = {};
-    C.forEach((c, i) => { const d = new Date(c.date); const key = `${d.getDate()}. ${d.getMonth() + 1}.`; if (!(key in days)) days[key] = i; });
+    C.forEach((c, i) => { const key = `${+c.date.slice(8, 10)}. ${+c.date.slice(5, 7)}.`; if (!(key in days)) days[key] = i; });
     const ticks = ['7. 10.', '26. 10.', '6. 11.'].map(k => { const t = svg('text', { x: X(days[k]), y: Y + 90, 'text-anchor': 'middle', fill: '#b7c0ca', 'font-family': 'Plex Mono', 'font-size': 40 }, s); t.textContent = k; return t; });
     const idx = h => C.findIndex(c => c.short === h);
     const STORIES = [

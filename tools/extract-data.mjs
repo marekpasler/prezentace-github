@@ -26,8 +26,6 @@ for (const f of files) {
 }
 
 mkdirSync(resolve(root, 'data'), { recursive: true });
-writeFileSync(resolve(root, 'data/commits.json'), JSON.stringify(commits, null, 1));
-writeFileSync(resolve(root, 'data/tree.json'), JSON.stringify(tree, null, 1));
 console.assert(commits.length > 0 && files.length > 0, 'empty repo snapshot');
 console.log(`${commits.length} commits, ${files.length} files`);
 // file:// pages can't fetch JSON, so also expose the snapshot as a script

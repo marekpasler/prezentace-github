@@ -1,6 +1,6 @@
 /* Deck engine: one paused GSAP timeline per slide, labels s0..sN are the click steps. */
 (() => {
-  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches && !new URLSearchParams(location.search).has('motion');
   const shell = document.getElementById('shell');
   const grid = document.getElementById('grid');
   const all = [...document.querySelectorAll('.slide')];
@@ -56,7 +56,7 @@
     playing && playing.kill();
     if (instant || REDUCED) { s.tl.pause(s.labels[k]); playing = null; }
     else playing = s.tl.tweenTo(s.labels[k], { ease: 'none' });
-    s.onStep && s.onStep(k, instant || REDUCED);
+    s.onStep && s.onStep(k, !!instant);
   };
 
   const hide = (el, s) => {
@@ -148,7 +148,7 @@
   // ---------- start (after fonts, so SplitText measures real glyphs) ----------
   document.fonts.ready.then(() => {
     const h = location.hash.slice(1);
-    const start = /^\d+$/.test(h) ? order[Math.min(+h, order.length) - 1] : (all.find(s => s.dataset.id === h) || order[0]);
+    const start = /^\d+$/.test(h) ? order[Math.max(1, Math.min(+h, order.length)) - 1] : (all.find(s => s.dataset.id === h) || order[0]);
     show(start, { instant: true });
   });
 
