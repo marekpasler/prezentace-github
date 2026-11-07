@@ -2,10 +2,11 @@
 (() => {
   const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const shell = document.getElementById('shell');
+  const grid = document.getElementById('grid');
   const all = [...document.querySelectorAll('.slide')];
   const order = all.filter(s => !s.hasAttribute('data-hidden'));
   const built = new Map();
-  let cur = -1, step = 0, playing = null, busy = false;
+  let cur = -1, step = 0, playing = null, entering = null;
 
   // ---------- fit 1920×1080 into the window ----------
   const fit = () => {
@@ -24,14 +25,18 @@
   rail.append(ln);
   const nodes = order.map((_, i) => {
     const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', 56); c.setAttribute('cy', y0 + i * dy); c.setAttribute('r', 11);
+    c.setAttribute('cx', 56); c.setAttribute('cy', y0 + i * dy); c.setAttribute('r', 10);
     rail.append(c); return c;
   });
-  const moveHead = (i, instant) => {
+  const moveHead = (el, i, instant) => {
+    const d = instant || REDUCED ? 0 : 1;
     nodes.forEach((n, k) => { n.classList.toggle('done', k < i); n.classList.toggle('head', k === i); });
-    gsap.to(head, { y: y0 + i * dy - 20, duration: instant || REDUCED ? 0 : .5, ease: 'power3.out' });
-    const showRail = i > 0; // cold open stays pure black
-    gsap.to([rail, head], { autoAlpha: showRail ? 1 : 0, duration: instant ? 0 : .4 });
+    gsap.to(head, { y: y0 + i * dy - 20, duration: .6 * d, ease: 'expo.out' });
+    // films own the whole frame, so the rail steps aside
+    const showRail = !el.hasAttribute('data-norail');
+    gsap.to([rail, head, grid], { autoAlpha: showRail ? 1 : 0, duration: .35 * d });
+    // ambient layer: the dot grid drifts against the direction of travel
+    gsap.to(grid, { backgroundPosition: `${-i * 64}px ${i * 20}px`, duration: .9 * d, ease: 'power2.out' });
   };
 
   // ---------- slide lifecycle ----------
@@ -51,38 +56,52 @@
     playing && playing.kill();
     if (instant || REDUCED) { s.tl.pause(s.labels[k]); playing = null; }
     else playing = s.tl.tweenTo(s.labels[k], { ease: 'none' });
-    s.onStep && s.onStep(k);
+    s.onStep && s.onStep(k, instant || REDUCED);
+  };
+
+  const hide = (el, s) => {
+    el.classList.remove('active');
+    gsap.set(el, { clearProps: 'opacity,visibility,transform' });
+    s.tl.pause(0);
   };
 
   const show = (el, { atEnd = false, instant = false } = {}) => {
     const prevEl = all[cur] ?? null;
     if (prevEl === el) return;
+    entering && entering.progress(1);
     if (prevEl) {
       const p = get(prevEl);
       p.leave && p.leave();
-      playing && playing.kill();
-      if (instant || REDUCED) { prevEl.classList.remove('active'); gsap.set(prevEl, { clearProps: 'all' }); p.tl.pause(0); }
-      else gsap.to(prevEl, { y: -40, autoAlpha: 0, duration: .4, ease: 'power3.in', onComplete: () => { prevEl.classList.remove('active'); gsap.set(prevEl, { clearProps: 'all' }); p.tl.pause(0); } });
+      playing && playing.kill(); playing = null;
+      gsap.killTweensOf(prevEl);
+      if (instant || REDUCED) hide(prevEl, p);
+      // exit is shorter and smaller than the entrance: attention is already moving on
+      else gsap.to(prevEl, { y: -24, autoAlpha: 0, duration: .3, ease: 'power2.in', onComplete: () => { if (all[cur] !== prevEl) hide(prevEl, p); } });
     }
     cur = all.indexOf(el);
     const s = get(el);
     step = atEnd ? s.labels.length - 1 : 0;
+    gsap.killTweensOf(el);
     el.classList.add('active');
     s.tl.pause(0);
     s.enter && s.enter();
     const vis = order.indexOf(el);
-    if (vis >= 0) moveHead(vis, instant);
+    if (vis >= 0) moveHead(el, vis, instant);
     history.replaceState(null, '', '#' + (vis >= 0 ? vis + 1 : el.dataset.id));
     document.getElementById('sr').textContent = `${el.getAttribute('aria-label')}${vis >= 0 ? `, slide ${vis + 1} z ${order.length}` : ''}`;
     if (instant || REDUCED) { gsap.set(el, { autoAlpha: 1, y: 0 }); goStep(s, step, true); return; }
-    gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4, delay: prevEl ? .25 : 0, ease: 'power3.out',
-      onComplete: () => atEnd ? goStep(s, step, true) : goStep(s, step) });
+    entering = gsap.fromTo(el, { y: 32, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: .55, delay: prevEl ? .18 : 0, ease: 'expo.out',
+      onStart: () => { atEnd ? goStep(s, step, true) : goStep(s, step); },
+      onComplete: () => { entering = null; },
+    });
   };
 
   const next = () => {
     const el = all[cur], s = get(el);
-    // still animating towards this step? finish it instantly first (fast clickers)
-    if (playing && playing.isActive()) { playing.progress(1); return; }
+    // a click mid-animation finishes it first, so fast clickers never skip a beat
+    if (entering) { entering.progress(1); entering = null; }
+    if (playing && playing.progress() < 1) { playing.progress(1); return; }
     if (step < s.labels.length - 1) { step++; goStep(s, step); return; }
     const i = order.indexOf(el);
     if (i >= 0 && i < order.length - 1) show(order[i + 1]);
@@ -90,6 +109,7 @@
   };
   const prev = () => {
     const el = all[cur], s = get(el);
+    if (entering) { entering.progress(1); entering = null; }
     if (step > 0) { step--; goStep(s, step, true); return; }
     const i = order.indexOf(el);
     if (i > 0) show(order[i - 1], { atEnd: true, instant: true });
@@ -98,17 +118,17 @@
 
   // ---------- input: keyboard, presenter clickers, mouse, touch ----------
   addEventListener('keydown', e => {
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
     const k = e.key;
     if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); next(); }
     else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); prev(); }
     else if (k === 'Home') show(order[0], { instant: true });
     else if (k === 'End') show(order[order.length - 1], { atEnd: true, instant: true });
-    else if (k === 'b' || k === 'B') { const b = document.querySelector('[data-id="backup"]'); show(b, { instant: true }); }
+    else if (k === 'b' || k === 'B') show(document.querySelector('[data-id="backup"]'), { instant: true });
     else if (k === 'f' || k === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
     else if (k === 'h' || k === 'H' || k === '?') document.getElementById('help').classList.toggle('on');
   });
-  addEventListener('click', e => { if (!e.target.closest('video, a, button')) next(); });
+  addEventListener('click', e => { if (!e.target.closest('video[controls], a')) next(); });
   let tx = null;
   addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   addEventListener('touchend', e => {
@@ -118,7 +138,7 @@
   });
   let idle; addEventListener('mousemove', () => { document.body.classList.remove('hide-cursor'); clearTimeout(idle); idle = setTimeout(() => document.body.classList.add('hide-cursor'), 2000); });
 
-  // pause rAF loops when the tab is hidden (only slides that run a loop; leave() may reset state)
+  // pause loops when the tab is hidden (only slides that run one; leave() may reset state)
   document.addEventListener('visibilitychange', () => {
     const s = cur >= 0 && get(all[cur]);
     if (!s || !s.loop) return;
@@ -132,5 +152,5 @@
     show(start, { instant: true });
   });
 
-  window.DECK = { next, prev, show, order, get state() { return { slide: all[cur]?.dataset.id, step } } };
+  window.DECK = { next, prev, show, order, get state() { return { slide: all[cur]?.dataset.id, step, playing: !!(playing && playing.progress() < 1) || !!entering } } };
 })();

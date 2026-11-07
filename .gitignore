@@ -1,3 +1,7 @@
 tools/qr.svg
 node_modules/
 .impeccable/
+film/*/node_modules/
+film/*/out/
+film/*/.hyperframes/
+film/*/snapshots/

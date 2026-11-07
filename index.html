@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub &amp; GitHub Pages</title>
-<meta name="description" content="Prezentace o GitHubu a GitHub Pages na příkladu plesového webu 8a8.gkolin.cz.">
+<meta name="description" content="Prezentace o GitHubu a GitHub Pages. Sama běží na GitHub Pages.">
 <link rel="preload" href="vendor/fonts/plex-sans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="vendor/fonts/plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/coldopen.mp4" as="video" type="video/mp4">
 <link rel="stylesheet" href="css/deck.css">
 </head>
 <body>
@@ -14,6 +15,10 @@
   <defs>
     <symbol id="i-file" viewBox="0 0 44 52"><path d="M3 3h26l12 12v34H3z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M29 3v12h12" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></symbol>
     <symbol id="i-dir" viewBox="0 0 52 44"><path d="M3 6h16l5 6h25v29H3z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5L2.6 9.4l6.5-.9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fork" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="6" cy="5" r="2.4"/><circle cx="18" cy="5" r="2.4"/><circle cx="12" cy="19" r="2.4"/><path d="M6 7.4v1.6c0 2 1.6 3.6 3.6 3.6h4.8c2 0 3.6-1.6 3.6-3.6V7.4M12 12.6v4"/></g></symbol>
+    <symbol id="i-pr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="19" r="2.4"/><path d="M6 7.4v9.2M18 16.6V9a3 3 0 0 0-3-3h-4M13 3.6 10.6 6 13 8.4"/></g></symbol>
+    <symbol id="i-merge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 8c0 2.4 2 4 4.4 4h5.2"/></g></symbol>
   </defs>
 </svg>
 
@@ -26,54 +31,54 @@
       <span class="url">https://<b>marekpasler.github.io</b>/prezentace-github/</span>
     </div>
     <div id="viewport">
+      <div id="grid" aria-hidden="true"></div>
       <svg id="rail" viewBox="0 0 180 1080" aria-hidden="true"></svg>
       <div id="rail-head" aria-hidden="true">HEAD</div>
 
-      <!-- 1 · cold open -->
-      <section class="slide" data-id="cold" aria-label="Úvod">
-        <canvas class="rain" width="1920" height="1080" style="position:absolute;inset:0"></canvas>
-        <div class="term" style="position:absolute;left:220px;top:400px">
-          <div><span class="prompt">~/plesoktava $ </span><span class="typed"></span><span class="caret blink"></span></div>
-          <div class="out muted" style="font-size:38px"></div>
-        </div>
-        <h1 class="url-final mono mint" style="position:absolute;left:0;right:0;top:450px;text-align:center;font-size:150px;font-weight:600;letter-spacing:-.02em;visibility:hidden">8a8.gkolin.cz</h1>
+      <!-- 1 · cold open (HyperFrames film) -->
+      <section class="slide" data-id="cold" data-norail aria-label="Úvod">
+        <video class="film" src="assets/coldopen.mp4" muted playsinline preload="auto"></video>
       </section>
 
-      <!-- 2 · final_final.zip -->
+      <!-- 2 · final_final.zip + pills -->
       <section class="slide" data-id="zips" aria-label="Jak se dřív sdílel kód">
         <div class="files">
           <div class="file" style="left:220px;top:190px"><svg><use href="#i-file"/></svg>web.zip</div>
           <div class="file" style="left:220px;top:390px"><svg><use href="#i-file"/></svg>web_final.zip</div>
           <div class="file" style="left:220px;top:590px"><svg><use href="#i-file"/></svg>web_final2.zip</div>
           <div class="file last" style="left:220px;top:790px;border-color:var(--del)"><svg><use href="#i-file"/></svg>web_OPRAVDU_final.zip</div>
+          <p class="side h2" style="position:absolute;left:1060px;top:420px;width:700px">A teď to samé pro pět lidí najednou.</p>
         </div>
         <div class="meme pills">
-          <h2 class="h1" style="position:absolute;left:220px;top:130px">Vyber si.</h2>
-          <svg viewBox="0 0 1500 520" style="position:absolute;left:220px;top:330px;width:1500px;height:520px">
+          <h2 class="h1 t-mask" style="position:absolute;left:220px;top:130px">Vyber si.</h2>
+          <svg viewBox="0 0 1500 560" style="position:absolute;left:220px;top:320px;width:1500px;height:560px">
             <g class="pill blue">
-              <rect x="80" y="40" width="440" height="180" rx="90" fill="#1f6feb" opacity=".35"/>
-              <rect x="80" y="40" width="220" height="180" rx="90" fill="#388bfd" opacity=".35"/>
-              <text x="300" y="350" text-anchor="middle" fill="var(--muted)" font-family="var(--sans)" font-size="52">web.zip mailem</text>
+              <g class="cap"><rect x="80" y="60" width="440" height="180" rx="90" fill="#1f6feb" opacity=".4"/><rect x="80" y="60" width="220" height="180" rx="90" fill="#388bfd" opacity=".4"/></g>
+              <text x="300" y="380" text-anchor="middle" fill="#b7c0ca" font-family="Plex Sans" font-size="52">web.zip mailem</text>
             </g>
             <g class="pill red">
-              <rect x="900" y="40" width="440" height="180" rx="90" fill="#da3633"/>
-              <rect x="900" y="40" width="220" height="180" rx="90" fill="#ff7b72"/>
-              <text x="1120" y="350" text-anchor="middle" fill="var(--ink)" font-family="var(--mono)" font-size="56" font-weight="600">git push</text>
+              <g class="cap"><rect x="900" y="60" width="440" height="180" rx="90" fill="#da3633"/><rect x="900" y="60" width="220" height="180" rx="90" fill="#ff7b72"/></g>
+              <text x="1120" y="380" text-anchor="middle" fill="#f0f6fc" font-family="Plex Mono" font-size="56" font-weight="600">git push</text>
             </g>
           </svg>
         </div>
       </section>
 
-      <!-- 3 · Git vs GitHub -->
+      <!-- 3 · příběh GitHubu (Remotion film) -->
+      <section class="slide" data-id="story" data-norail aria-label="Příběh GitHubu">
+        <video class="film" src="assets/historie.mp4" muted playsinline preload="auto"></video>
+      </section>
+
+      <!-- 4 · Git vs GitHub -->
       <section class="slide" data-id="gitvs" aria-label="Git a GitHub">
         <div class="cols">
-          <div style="position:absolute;left:220px;top:250px">
-            <div class="display">Git</div>
-            <div class="body" style="margin-top:28px">v tvém počítači</div>
+          <div class="col" style="position:absolute;left:220px;top:250px">
+            <div class="display t-mask">Git</div>
+            <div class="body" style="margin-top:28px">foťák v tvém počítači</div>
           </div>
-          <div style="position:absolute;left:1060px;top:250px">
-            <div class="display">GitHub</div>
-            <div class="body" style="margin-top:28px">na internetu</div>
+          <div class="col" style="position:absolute;left:1060px;top:250px">
+            <div class="display t-mask">GitHub</div>
+            <div class="body" style="margin-top:28px">album na internetu</div>
           </div>
           <div class="album" style="position:absolute;left:1060px;top:640px;display:grid;grid-template-columns:repeat(4,170px);gap:20px"></div>
           <div class="photo" style="position:absolute;left:220px;top:640px;width:170px;height:130px;border:4px solid var(--ink);border-radius:8px;background:var(--surface);padding:16px;opacity:0">
@@ -83,23 +88,21 @@
           </div>
           <div class="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none"></div>
         </div>
-        <div class="meme brain">
-          <div class="brain-rows" style="position:absolute;left:220px;top:110px;right:140px"></div>
-        </div>
+        <div class="meme brain"><div class="brain-rows" style="position:absolute;left:220px;top:110px;right:140px"></div></div>
       </section>
 
-      <!-- 4 · repozitář -->
+      <!-- 5 · repozitář -->
       <section class="slide" data-id="repo" aria-label="Repozitář">
         <div style="position:absolute;left:220px;top:150px;width:640px">
-          <h2 class="h1">Repozitář</h2>
+          <h2 class="h1 t-mask">Repozitář</h2>
           <p class="body" style="margin-top:32px">složka, která si pamatuje celou historii</p>
         </div>
-        <div class="tree mono" style="position:absolute;left:960px;top:120px;font-size:40px;line-height:1"></div>
+        <div class="tree mono" style="position:absolute;left:960px;top:110px;font-size:40px;line-height:1"></div>
       </section>
 
-      <!-- 5 · commit -->
+      <!-- 6 · commit -->
       <section class="slide" data-id="commit" aria-label="Commit">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">Commit</h2>
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Commit = uložená pozice ve hře</h2>
         <div class="diff" style="position:absolute;left:220px;top:250px;width:1640px">
           <div class="hdr" style="font-size:40px">index.html&nbsp;&nbsp;&nbsp;@@ -413 +413 @@</div>
           <div class="rows" style="position:relative;height:180px">
@@ -114,7 +117,7 @@
         <p class="snap body" style="position:absolute;left:220px;top:800px;width:1500px">Git uloží snímek celého projektu. Diff si jen dopočítá.</p>
       </section>
 
-      <!-- 6 · historie -->
+      <!-- 7 · historie plesového webu -->
       <section class="slide" data-id="history" aria-label="Historie webu">
         <h2 class="h2" style="position:absolute;left:220px;top:110px"><span class="n">42</span> commitů za 30 dní</h2>
         <svg class="tl" viewBox="0 0 1920 1080" style="position:absolute;inset:0"></svg>
@@ -125,34 +128,86 @@
         </div>
       </section>
 
-      <!-- 7 · branch a merge -->
-      <section class="slide" data-id="branch" aria-label="Větve a merge">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">Větev = ukazatel na commit</h2>
-        <svg class="metro" viewBox="0 0 1920 1080" style="position:absolute;inset:0">
-          <path class="main" d="M220 680 H1780" fill="none" stroke="var(--muted)" stroke-width="16" stroke-linecap="round"/>
-          <path id="br-out" class="out" d="M760 680 C880 680 860 440 980 440 H1240" fill="none" stroke="var(--mint)" stroke-width="16" stroke-linecap="round"/>
-          <path id="br-in" class="in" d="M1240 440 C1360 440 1340 680 1460 680" fill="none" stroke="var(--mint)" stroke-width="16" stroke-linecap="round"/>
-          <g class="st-main"><circle cx="360" cy="680" r="26"/><circle cx="560" cy="680" r="26"/><circle cx="760" cy="680" r="26"/></g><g class="st-after"><circle cx="1640" cy="680" r="26"/></g>
-          <g class="st-br"><circle cx="1020" cy="440" r="26"/><circle cx="1130" cy="440" r="26"/><circle cx="1240" cy="440" r="26"/></g>
-          <g class="st-merge"><circle cx="1460" cy="680" r="38" fill="var(--bg)" stroke="var(--mint)" stroke-width="10"/><circle cx="1460" cy="680" r="18" fill="var(--mint)"/></g>
-          <text class="lb-main" x="220" y="770" font-family="var(--mono)" font-size="44" fill="var(--muted)">main</text>
-          <text class="lb-br" x="840" y="390" font-family="var(--mono)" font-size="44" fill="var(--mint)">nove-menu</text>
-          <text class="lb-merge" x="1460" y="800" text-anchor="middle" font-family="var(--sans)" font-size="44" fill="var(--ink)">merge commit: dva rodiče</text>
-          <g class="headptr"><rect x="-80" y="-112" width="160" height="56" rx="8" fill="var(--mint)"/><text y="-72" text-anchor="middle" font-family="var(--mono)" font-weight="600" font-size="32" fill="var(--bg)">HEAD</text><path d="M-14 -57 L0 -34 L14 -57 Z" fill="var(--mint)"/></g>
-        </svg>
-        <div class="meme conflict" style="background:var(--bg)">
-          <h2 class="h1" style="position:absolute;left:220px;top:130px">Dva lidi, jeden řádek.</h2>
-          <div class="term" style="position:absolute;left:220px;top:380px;font-size:46px;line-height:1.5;white-space:normal">
-            <div class="mk" style="color:var(--del)">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div>
-            <div>© 2026 Třída 8.A8 — Gymnázium Kolín</div>
-            <div class="mk" style="color:var(--muted)">=======</div>
-            <div>© 2027 Třída 8.A8 — Gymnázium Kolín</div>
-            <div class="mk" style="color:var(--add)">&gt;&gt;&gt;&gt;&gt;&gt;&gt; nove-menu</div>
-          </div>
+      <!-- 8 · git blame meme -->
+      <section class="slide" data-id="blame" aria-label="Git blame">
+        <h2 class="h1 t-mask" style="position:absolute;left:220px;top:110px">Kdo to rozbil?</h2>
+        <div class="term blame" style="position:absolute;left:220px;top:330px;font-size:38px;line-height:1.55;white-space:normal"></div>
+        <div class="verdict" style="position:absolute;left:220px;top:830px;display:flex;align-items:baseline;gap:36px">
+          <span class="tag" style="font-size:64px;padding:10px 26px">818 z 818 řádků</span>
+          <span class="h2">jsem napsal já.</span>
         </div>
       </section>
 
-      <!-- 8 · čísla -->
+      <!-- 9 · branch a merge -->
+      <section class="slide" data-id="branch" aria-label="Větve a merge">
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Větev = ukazatel na commit</h2>
+        <svg class="metro" viewBox="0 0 1920 1080" style="position:absolute;inset:0">
+          <path class="main" d="M220 680 H1780" fill="none" stroke="#b7c0ca" stroke-width="16" stroke-linecap="round"/>
+          <path id="br-out" class="out" d="M760 680 C880 680 860 440 980 440 H1240" fill="none" stroke="#5effc4" stroke-width="16" stroke-linecap="round"/>
+          <path id="br-in" class="in" d="M1240 440 C1360 440 1340 680 1460 680" fill="none" stroke="#5effc4" stroke-width="16" stroke-linecap="round"/>
+          <g class="st-main"><circle cx="360" cy="680" r="26"/><circle cx="560" cy="680" r="26"/><circle cx="760" cy="680" r="26"/></g>
+          <g class="st-after"><circle cx="1640" cy="680" r="26"/></g>
+          <g class="st-br"><circle cx="1020" cy="440" r="26"/><circle cx="1130" cy="440" r="26"/><circle cx="1240" cy="440" r="26"/></g>
+          <g class="st-merge"><circle cx="1460" cy="680" r="38" fill="#0d1117" stroke="#5effc4" stroke-width="10"/><circle cx="1460" cy="680" r="18" fill="#5effc4"/></g>
+          <text class="lb-main" x="220" y="770" font-family="Plex Mono" font-size="44" fill="#b7c0ca">main</text>
+          <text class="lb-br" x="840" y="390" font-family="Plex Mono" font-size="44" fill="#5effc4">nove-menu</text>
+          <text class="lb-merge" x="1460" y="800" text-anchor="middle" font-family="Plex Sans" font-size="44" fill="#f0f6fc">merge commit: dva rodiče</text>
+          <g class="headptr"><rect x="-80" y="-112" width="160" height="56" rx="8" fill="#5effc4"/><text y="-72" text-anchor="middle" font-family="Plex Mono" font-weight="600" font-size="32" fill="#0d1117">HEAD</text><path d="M-14 -57 L0 -34 L14 -57 Z" fill="#5effc4"/></g>
+        </svg>
+        <div class="meme conflict" style="background:var(--bg)">
+          <h2 class="h1" style="position:absolute;left:220px;top:110px">Dva lidi, jeden řádek.</h2>
+          <div class="cf mono">
+            <div class="mk mk1" style="color:var(--del)">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div>
+            <div class="ln a">© 2026 Třída 8.A8 — Gymnázium Kolín</div>
+            <div class="mk mk2" style="color:var(--muted)">=======</div>
+            <div class="ln b">© 2027 Třída 8.A8 — Gymnázium Kolín</div>
+            <div class="mk mk3" style="color:var(--add)">&gt;&gt;&gt;&gt;&gt;&gt;&gt; nove-menu</div>
+          </div>
+          <div class="boom" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- 10 · pull request -->
+      <section class="slide" data-id="pr" aria-label="Pull request">
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Pull request = „mrkni mi na to“</h2>
+        <div class="prcard">
+          <div class="pr-top">
+            <span class="pr-state"><svg><use href="#i-pr"/></svg><b class="o">Open</b><b class="m" style="display:none">Merged</b></span>
+            <div>
+              <div class="pr-title">Nové menu na plesový web</div>
+              <div class="pr-sub mono"><span class="br">nove-menu</span> → <span class="br">main</span></div>
+            </div>
+          </div>
+          <div class="pr-rows">
+            <div class="pr-row chk"><svg class="status" viewBox="0 0 72 72"><g class="p"><circle cx="36" cy="36" r="26" fill="none" stroke="rgba(210,153,34,.3)" stroke-width="7"/><g class="spin"><circle cx="36" cy="36" r="26" fill="none" stroke="#d29922" stroke-width="7" stroke-dasharray="44 120" stroke-linecap="round"/></g></g><g class="ok"><circle cx="36" cy="36" r="32" fill="#5effc4"/><path d="M22 37l9 9 19-20" fill="none" stroke="#0d1117" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span>Kontroly: build a nasazení náhledu</span></div>
+            <div class="pr-row rev"><span class="avatar">T</span><span><b>Tonda</b> schválil změny</span></div>
+          </div>
+          <button class="pr-btn" tabindex="-1"><svg><use href="#i-merge"/></svg>Merge pull request</button>
+        </div>
+      </section>
+
+      <!-- 11 · fork a hvězdička -->
+      <section class="slide" data-id="fork" aria-label="Fork a hvězdička">
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Open source: fork a hvězdička</h2>
+        <div class="repo-card rc-a">
+          <div class="rc-name mono"><span class="muted">marekpasler /</span> plesoktava</div>
+          <div class="rc-btns">
+            <span class="rc-btn star"><svg class="ic"><use href="#i-star"/></svg>Star <b class="cnt">0</b></span>
+            <span class="rc-btn"><svg class="ic"><use href="#i-fork"/></svg>Fork <b class="fcnt">0</b></span>
+          </div>
+        </div>
+        <svg class="fork-arrow" viewBox="0 0 1920 1080" style="position:absolute;inset:0;pointer-events:none">
+          <path class="fa1" d="M700 560 C700 660 760 700 900 700" fill="none" stroke="#5effc4" stroke-width="6" stroke-linecap="round"/>
+          <path class="fa2" d="M1240 830 C1240 980 520 990 480 900 L480 590" fill="none" stroke="#b7c0ca" stroke-width="6" stroke-dasharray="14 14" stroke-linecap="round"/>
+        </svg>
+        <div class="repo-card rc-b">
+          <div class="rc-name mono"><span class="muted">spoluzak /</span> plesoktava</div>
+          <div class="rc-sub">forknuto z marekpasler/plesoktava</div>
+        </div>
+        <p class="fork-pr mono">pull request zpátky</p>
+      </section>
+
+      <!-- 12 · čísla -->
       <section class="slide" data-id="numbers" aria-label="GitHub v číslech">
         <div style="position:absolute;left:220px;right:140px;top:200px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:60px">
           <div><div class="display"><span class="c" data-to="180">0</span><span style="font-size:.5em"> mil.+</span></div><div class="body" style="margin-top:20px">vývojářů</div></div>
@@ -166,9 +221,9 @@
         <p class="small" style="position:absolute;right:140px;bottom:70px">Zdroj: GitHub Octoverse 2025</p>
       </section>
 
-      <!-- 9 · co je Pages -->
+      <!-- 13 · co je Pages -->
       <section class="slide" data-id="pages" aria-label="Co je GitHub Pages">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">GitHub Pages</h2>
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">GitHub Pages = web z repozitáře</h2>
         <div class="chips"></div>
         <div class="win" style="position:absolute;left:880px;top:250px;width:920px;height:640px;border:3px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)">
           <div style="height:76px;display:flex;align-items:center;gap:14px;padding:0 26px;border-bottom:3px solid var(--line)">
@@ -179,41 +234,59 @@
         </div>
       </section>
 
-      <!-- 10 · jak to běží -->
+      <!-- 14 · jak to běží -->
       <section class="slide" data-id="pipeline" aria-label="Jak nasazení běží">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">Od pushe k živému webu</h2>
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Od pushe k živému webu</h2>
         <div class="steps" style="position:absolute;left:220px;top:290px;display:grid;gap:70px"></div>
       </section>
 
-      <!-- 11 · vlastní web -->
+      <!-- 15 · vlastní web -->
       <section class="slide" data-id="own" aria-label="Vlastní web za pět minut">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">Vlastní web za 5 minut</h2>
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Vlastní web za 5 minut</h2>
         <ol class="own" style="position:absolute;left:220px;top:280px;list-style:none;display:grid;gap:56px"></ol>
         <p class="mono mint" style="position:absolute;left:220px;bottom:110px;font-size:52px">jméno.github.io</p>
       </section>
 
-      <!-- 12 · živé demo -->
+      <!-- 16 · živé demo + works on my machine -->
       <section class="slide" data-id="demo" aria-label="Živé demo">
         <div class="base">
-          <h2 class="display" style="position:absolute;left:220px;top:330px">Živé demo</h2>
+          <h2 class="display t-mask" style="position:absolute;left:220px;top:330px">Živé demo</h2>
           <p class="body" style="position:absolute;left:220px;top:560px">Co tam mám napsat?</p>
         </div>
         <div class="meme machine">
-          <p class="h1" style="position:absolute;left:220px;top:300px;width:1500px">It works on my machine.</p>
-          <div style="position:absolute;left:220px;top:620px;display:flex;align-items:center;gap:32px">
-            <svg class="status" viewBox="0 0 72 72"><g class="spin"><circle cx="36" cy="36" r="26" fill="none" stroke="var(--amber)" stroke-width="8" stroke-dasharray="40 124" stroke-linecap="round"/></g></svg>
-            <span class="body mono">deploy běží…</span>
-          </div>
+          <p class="h1 q1" style="position:absolute;left:220px;top:140px">„U mě to funguje.“</p>
+          <p class="h1 q2 mint" style="position:absolute;left:220px;top:290px;width:1040px">„Tak pošleme do produkce tvůj počítač.“</p>
+          <svg class="ship" viewBox="0 0 520 420" style="position:absolute;left:1300px;top:420px;width:520px;height:420px">
+            <g class="laptop"><rect x="150" y="60" width="220" height="140" rx="10" fill="#161b22" stroke="#f0f6fc" stroke-width="8"/><path d="M110 214h300l-20 26H130z" fill="#f0f6fc"/><path d="M200 120l30 30 50-50" fill="none" stroke="#5effc4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="box"><rect x="90" y="200" width="340" height="190" fill="#b07a3a" stroke="#f0f6fc" stroke-width="6"/><path class="flapL" d="M90 200 L90 200 L260 200" fill="none"/><rect class="fl" x="90" y="194" width="170" height="16" fill="#c98f47" stroke="#f0f6fc" stroke-width="5"/><rect class="fr" x="260" y="194" width="170" height="16" fill="#c98f47" stroke="#f0f6fc" stroke-width="5"/></g>
+            <g class="label"><rect x="150" y="270" width="220" height="70" rx="6" fill="#f0f6fc"/><text x="260" y="318" text-anchor="middle" font-family="Plex Mono" font-weight="600" font-size="36" fill="#0d1117">PRODUKCE</text></g>
+          </svg>
+          <p class="body docker" style="position:absolute;left:220px;top:780px">Mimochodem: přesně tohle dělá Docker.</p>
         </div>
       </section>
 
-      <!-- 12b · záloha dema (skrytý, klávesa B) -->
+      <!-- 16b · záloha dema (skrytý, klávesa B) -->
       <section class="slide" data-id="backup" data-hidden aria-label="Záznam dema">
         <video class="backup-video" src="assets/demo.mp4" controls preload="none" style="position:absolute;left:220px;top:90px;width:1560px;height:840px;background:var(--surface)"></video>
         <p class="small" style="position:absolute;left:220px;bottom:30px">Pro jistotu jsem si to natočil.</p>
       </section>
 
-      <!-- 13 · limity -->
+      <!-- 17 · pátek 16:59 -->
+      <section class="slide" data-id="friday" aria-label="Pátek odpoledne">
+        <div class="fr-calm">
+          <p class="display t-mask" style="position:absolute;left:220px;top:180px">Pátek <span class="mono mint clock">16:59</span></p>
+          <div class="term" style="position:absolute;left:220px;top:470px;font-size:52px"><span class="prompt">$ </span><span class="typed"></span><span class="caret blink"></span></div>
+        </div>
+        <div class="alarm" aria-hidden="true"></div>
+        <p class="fr-down" style="position:absolute;left:220px;top:620px">PRODUKCE NEJEDE</p>
+        <div class="toasts"></div>
+        <div class="fr-fix">
+          <p class="body" style="position:absolute;left:220px;top:800px">Příště: <span class="mono ink">git push --force-with-lease</span>.</p>
+          <p class="body" style="position:absolute;left:220px;top:880px">A v pátek radši nic.</p>
+        </div>
+      </section>
+
+      <!-- 18 · limity -->
       <section class="slide" data-id="limits" aria-label="Na co Pages je a na co ne">
         <div style="position:absolute;left:220px;top:180px;display:grid;grid-template-columns:720px 720px;gap:120px">
           <div class="yes"><h2 class="h1 mint">Ano</h2><ul class="h2" style="list-style:none;margin-top:44px;display:grid;gap:26px;font-weight:400"><li>plesový web</li><li>portfolio</li><li>dokumentace</li><li>tahle prezentace</li></ul></div>
@@ -221,22 +294,26 @@
         </div>
       </section>
 
-      <!-- 14 · student pack -->
+      <!-- 19 · Copilot -->
+      <section class="slide" data-id="copilot" aria-label="Copilot">
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">Copilot doplňuje kód</h2>
+        <div class="editor mono">
+          <div class="ed-bar"><span>maturita.js</span></div>
+          <div class="ed-body">
+            <div class="ed-ln"><span class="ed-no">1</span><span class="cm typed"></span><span class="caret"></span></div>
+            <div class="ed-ln ghost-ln"><span class="ed-no">2</span><span class="ghost">// TODO: napiš si ji sám</span></div>
+          </div>
+        </div>
+        <p class="body tabhint" style="position:absolute;left:220px;top:830px">Tab = přijmout návrh</p>
+      </section>
+
+      <!-- 20 · student pack -->
       <section class="slide" data-id="student" aria-label="GitHub Student Developer Pack">
-        <h2 class="h2" style="position:absolute;left:220px;top:110px">GitHub Student Developer Pack</h2>
+        <h2 class="h2 t-mask" style="position:absolute;left:220px;top:110px">GitHub Student Developer Pack</h2>
         <div class="tickets" style="position:absolute;left:220px;top:330px;display:grid;grid-template-columns:repeat(3,500px);gap:50px;perspective:1600px"></div>
       </section>
 
-      <!-- 15 · co dál -->
-      <section class="slide" data-id="more" aria-label="Co dalšího GitHub umí">
-        <div style="position:absolute;left:220px;right:140px;top:400px;display:grid;grid-template-columns:repeat(3,1fr);gap:60px">
-          <div class="it"><div class="h1">Issues</div><div class="body" style="margin-top:20px">úkoly k plesu</div></div>
-          <div class="it"><div class="h1">Actions</div><div class="body" style="margin-top:20px">nasazuje náš web</div></div>
-          <div class="it"><div class="h1">Copilot</div><div class="body" style="margin-top:20px">AI pomocník</div></div>
-        </div>
-      </section>
-
-      <!-- 16 · odhalení -->
+      <!-- 21 · odhalení -->
       <section class="slide" data-id="reveal" aria-label="Odhalení">
         <p class="h1" style="position:absolute;left:220px;top:380px;width:1500px">Tahle prezentace je taky web na GitHub Pages.</p>
       </section>

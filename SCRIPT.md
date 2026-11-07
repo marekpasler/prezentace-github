@@ -1,131 +1,69 @@
-# Scénář – GitHub & GitHub Pages
+# Scénář – GitHub & GitHub Pages (v2)
 
 Pointa: GitHub je „Google Disk s pamětí“ pro kód a GitHub Pages z něj zadarmo udělá web, který vidí celý svět.
-Hlavní příběh: plesový web (`../plesoktava`). Každý pojem = přirovnání → přesný termín → co se stalo na plesovém webu.
+Příklady jsou z mého plesového webu (`../plesoktava`), ale prezentace je o GitHubu obecně.
+21 slidů, ~18 min + otázky. „Říkáš“ je kostra – přepiš si ji vlastními slovy. Ovládání: → / klik / klikátko, ← zpět, B = záloha dema.
 
-17 slidů, ~17 min + 2–3 min otázky. „Říkáš“ je kostra, přepsat vlastními slovy. Na plátně nikdy není to, co se říká.
-
-## Pojmy
+Každý pojem: přirovnání → přesný termín → co se stalo na plesovém webu. Když zjednodušuješ, řekni „zjednodušeně… přesněji…“.
 
 | Pojem | Lidsky | Odborně (musí zaznít) |
 |---|---|---|
-| Repozitář | složka s pamětí | adresář se skrytou složkou `.git`: databáze objektů a referencí |
-| Commit | uložená pozice ve hře | snímek celého stromu souborů + odkaz na rodičovský commit, autor a zpráva; identifikuje ho SHA-1 hash |
-| Branch | paralelní vesmír | posuvný ukazatel na commit; HEAD ukazuje, na které větvi právě jsi |
-| Merge | spojení vesmírů | merge commit se dvěma rodiči; konflikt vznikne, když obě větve změní stejné řádky |
-| Push | nahrát do cloudu | odešle na remote `origin` chybějící objekty a posune tam referenci větve |
-| Pull request | „mrkni mi na to“ | funkce GitHubu, ne Gitu: návrh na sloučení větve s review a automatickými kontrolami |
-| GitHub Actions | robot, co to udělá za tebe | CI/CD: YAML workflow v `.github/workflows`, spuštěný událostí push na runneru |
-| GitHub Pages | web z repozitáře | statický hosting; nasazení z větve (s Jekyllem), nebo přes Actions (`upload-pages-artifact` + `deploy-pages`) |
+| Repozitář | složka s pamětí | adresář se skrytou `.git`: databáze objektů a referencí |
+| Commit | uložená pozice ve hře | snímek celého stromu + odkaz na rodiče, autor, zpráva; SHA-1 hash |
+| Branch | paralelní vesmír | posuvný ukazatel na commit; HEAD = kde právě jsem |
+| Merge | spojení vesmírů | commit se dvěma rodiči; konflikt = obě větve změnily stejné řádky |
+| Push | nahrát do cloudu | pošle na `origin` chybějící objekty a posune referenci větve |
+| Pull request | „mrkni mi na to“ | funkce GitHubu (ne Gitu): návrh na sloučení s review a kontrolami |
+| Fork | kopie cizího repa u mě | vlastní repozitář odvozený z cizího; změny vracím pull requestem |
+| GitHub Actions | robot | CI/CD: YAML v `.github/workflows`, spouští se událostí (push) na runneru |
+| GitHub Pages | web z repozitáře | statický hosting; z větve (Jekyll) nebo přes Actions |
 
-## Akt 1 – Problém (3 min)
+## Akt 1 – Problém a příběh
 
-### 1. Cold open
-- Plátno: černá obrazovka, bliká kurzor.
-- Motion: sám se napíše `git push`, Enter. Obrazovka se rozpadne do zeleného deště znaků, ten se složí do adresy plesového webu.
-- Říkáš (po animaci): „Tohle je web našeho plesu. Stojí nula korun, běží nonstop a nasadil jsem ho jedním příkazem. Za deset minut budete vědět jak.“
+1. **Cold open (film, HyperFrames).** Klik → terminál napíše `git push` (skutečný push plesového webu), obrazovka se rozpadne do Matrix deště, ten se složí do `8a8.gkolin.cz`.
+   Říkáš (po filmu): „Tohle je web našeho plesu. Stojí nula korun, běží nonstop a nasadil jsem ho jedním příkazem. Za pár minut budete vědět jak.“
+2. **final_final.zip → pilulky.** „Kdo má na disku něco jako final_final? Teď si představte pět lidí, co to upravují najednou.“ Klik: meme modrá/červená pilulka, klik: červená vyhraje.
+3. **Příběh GitHubu (film, Remotion, hraje sám).** 2005 Git (Linus Torvalds pro jádro Linuxu) → 2008 GitHub → 2018 Microsoft za 7,5 mld. $ → 2019 Actions → 2021 Copilot → 2025 180+ mil. vývojářů. Mluv přes film, jeden milník ≈ 2 s.
 
-### 2. final_final.zip
-- Plátno: `web.zip`, `web_final.zip`, `web_final2.zip`, `web_OPRAVDU_final.zip`.
-- Motion: soubory padají jeden po druhém (bounce), poslední se zatřese.
-- Meme: Matrix pilulky – modrá = „poslat web mailem jako zip“, červená = „git push“ (SVG, zelená Matrix paleta, pilulky se na klik rozsvítí).
-- Říkáš: „Kdo má na disku něco jako final_final? Teď si představte sto souborů a pět lidí, co je upravují najednou.“
+## Akt 2 – Git a GitHub
 
-## Akt 2 – GitHub (7 min)
+4. **Git vs. GitHub.** „Git je foťák – fotí stav projektu. GitHub je album v cloudu.“ Klik: blesk, fotka letí do alba. Klik ×4: expanding brain (mail → Disk → GitHub → Pages).
+5. **Repozitář.** Strom plesového webu, složky se rozbalují; poslední klik ukáže `.git/` uvnitř projektu: „Tady je ta paměť.“
+6. **Commit.** Skutečný diff z commitu `9cc712d`. „Commit je uložená pozice ve hře… Přesněji: Git ukládá snímek celého projektu, diff si dopočítá, a ten kód je SHA-1 otisk.“
+7. **Historie webu.** 42 commitů za 30 dní na skutečné časové ose. Tři příběhy: první commit (618 řádků najednou), 3 minuty boje s doménou (Create/Delete/Create CNAME), noční oprava ve 23:05 (© 2027 → 2026). Meme: 19 ze 42 commitů se jmenuje „Update index.html“.
+8. **git blame – „Kdo to rozbil?“** Skutečný `git blame`: každý řádek ukazuje na mě. „818 z 818 řádků jsem napsal já.“ (`git blame` = kdo naposledy změnil každý řádek.)
+9. **Branch a merge.** HEAD jede po větvi `nove-menu`, vrátí se merge commitem se dvěma rodiči. „Větev je jen ukazatel na commit, který se s dalším commitem posune.“ Meme: dva řádky do sebe narazí → konflikt se značkami `<<<<<<<` / `>>>>>>>`.
+10. **Pull request.** Ukázka (ne skutečný PR): kontroly doběhnou, spolužák schválí, Merge → stav „Merged“. „Pull request je funkce GitHubu, ne Gitu.“
+11. **Open source: fork a hvězdička.** Hvězdička = záložka a poděkování. Fork = moje kopie cizího repa. Změny vracím pull requestem – tak funguje open source.
+12. **GitHub v číslech.** 180+ mil. vývojářů, 630 mil. repozitářů, skoro 1 mld. commitů za 2025 (Octoverse 2025). Počítadlo běží: „Za tu minutu, co tu stojím, přibylo asi šedesát lidí.“
 
-### 3. Git vs. GitHub
-- Plátno: dvě slova vedle sebe, pod nimi „v tvém počítači“ / „na internetu“.
-- Motion: blesk foťáku, fotka odletí do alba.
-- Meme: Expanding brain – mail → Google Disk → GitHub → GitHub Pages (každým klikem víc glow).
-- Říkáš: „Git je foťák – fotí stav projektu. GitHub je album v cloudu, kam ty fotky nahrávám a sdílím.“
+## Akt 3 – GitHub Pages
 
-### 4. Repozitář
-- Plátno: skutečný strom souborů plesového webu (`data/tree.json`).
-- Motion: složky se rozbalují postupně (stagger po řádcích).
-- Říkáš: „Repozitář je složka projektu, která si pamatuje celou svou historii.“
-
-### 5. Commit
-- Plátno: skutečný diff z webu (změna data nebo ceny vstupenky).
-- Motion: červený řádek odjede doleva, zelený přijede zprava (Flip); nahoře razítko se zprávou commitu a hashem (scale 1.3 → 1).
-- Říkáš: „Commit je uložená pozice ve hře. Napíšu, co jsem změnil, a můžu se sem kdykoli vrátit. Přesněji: Git neukládá rozdíl, ale snímek celého projektu. Diff si jen dopočítá a ten kód nahoře je SHA-1 otisk obsahu.“
-
-### 6. Historie webu
-- Plátno: skutečný `git log` jako časová osa (`data/commits.json` → SVG).
-- Motion: osa se kreslí zleva (DrawSVG), tečky naskakují; tři se zvětší – první commit, nejvtipnější zpráva, noční oprava.
-- Meme: skutečné zprávy commitů vypisované jako v terminálu, poslední řádek se zatřese.
-- Říkáš: krátký skutečný příběh ke každé ze tří teček.
-
-### 7. Branch a merge
-- Plátno: mapa metra – linka `main` a odbočka `nove-menu`.
-- Motion: tečka jede po lince (MotionPath), linka se rozdvojí, přibudou stanice, vrátí se do hlavní linky.
-- Meme: merge conflict – dvě fotky spolužáků (se souhlasem), mezi nimi blikají `<<<<<<<` a `>>>>>>>`.
-- Říkáš: „Větev je paralelní vesmír. Zkouším nové menu a hlavní web mezitím pořád funguje. Pod kapotou je větev jen ukazatel na jeden commit, který se s každým dalším commitem posune.“
-
-### 8. Pull request (vynech, pokud žádný není)
-- Plátno: screenshot skutečného PR s komentářem.
-- Říkáš: „Než se změna spojí s hlavní verzí, může se na ni někdo podívat a okomentovat ji.“
-
-### 9. GitHub v číslech
-- Plátno: 180+ milionů vývojářů, 630 milionů repozitářů, skoro miliarda commitů za rok 2025 (Octoverse 2025).
-- Motion: počítadla naběhnou; pod nimi „každou sekundu se přidá nový vývojář“ a počítadlo, které tiká, dokud je slide vidět.
-- Říkáš: „Za tu minutu, co tady stojím, přibylo na GitHubu asi šedesát lidí.“
-
-## Akt 3 – GitHub Pages (7 min)
-
-### 10. Co je Pages
-- Plátno: repozitář → web.
-- Motion: soubory z repozitáře odletí a složí se do okna prohlížeče (Flip).
-- Říkáš: „GitHub Pages vezme soubory z repozitáře a udělá z nich web. Zadarmo, s HTTPS, na adrese jméno.github.io.“
-
-### 11. Jak to běží
-- Plátno: push → GitHub Actions web sestaví → web je živě.
-- Motion: každý krok se odškrtne jako v Actions: žlutá točící se tečka → zelená fajfka.
-
-### 12. Vlastní web za 5 minut
-- Plátno: účet → nový repozitář → `index.html` → Settings → Pages → Deploy from branch.
-- Motion: kroky se rozsvěcují postupně, u každého výřez skutečné obrazovky GitHubu.
-- Říkáš: „Tohle zvládne každý z vás ještě dnes večer, bez jediného příkazu v terminálu – všechno jde kliknout v prohlížeči.“
-
-### 13. Živé demo
-- Viz „Živé demo“ níže. Meme: „It works on my machine“ během čekání na deploy.
-- 13b (skrytý): záložní video dema.
-
-### 14. Na co Pages je a na co ne
-- Plátno: Ano: ples, portfolio, dokumentace, prezentace. Ne: databáze, přihlašování, PHP.
-- Říkáš: „Pages umí jen statické weby – HTML, CSS, JavaScript. Web může mít až 1 GB. Na něco s databází potřebuješ jinou službu.“
-
-### 15. Bonus pro studenty
-- Plátno: GitHub Student Developer Pack – GitHub Pro, Copilot pro studenty, doména zdarma na rok.
-- Motion: tři karty se otočí jako vstupenky.
-- Říkáš: „Jako studenti máte nárok na balík nástrojů zadarmo. Stačí ověřit, že studujete.“
-
-### 16. Co dalšího GitHub umí (30 s)
-- Plátno: Issues (úkoly), Actions (automatizace), Copilot (AI pomocník).
-- Říkáš: „Na plese jsme Issues mohli používat jako to-do list – každý úkol jeden lístek.“
-
-### 17. Odhalení + QR
-- Plátno: „Tahle prezentace je taky web na GitHub Pages.“ + QR kód.
-- Motion: slide se odzoomuje (scale 1 → 0.6) a ukáže se, že celou dobu byl uvnitř okna prohlížeče s adresou na github.io.
-- Říkáš: „Naskenujte si ji, máte ji v mobilu i s odkazy. Máte otázky?“
-
-## Živé demo (~2 min)
-1. Na plátně plesový web. „Co tam mám napsat?“ – první slušný návrh.
-2. V editoru změnit jeden text (podtitul), uložit.
-3. Terminál (písmo 24+ px): `git add .`, `git commit -m "živě z hodiny"`, `git push`.
-4. Záložka Actions – deploy ~1 min, mezitím slide 14.
-5. Refresh, změna je venku. Pak `git revert HEAD` + `git push`.
+13. **Pages = web z repozitáře.** Soubory odletí do okna prohlížeče, objeví se plesový web. „Zadarmo, s HTTPS, na adrese jméno.github.io.“
+14. **Od pushe k živému webu.** Kroky se odškrtávají jako v Actions (žlutá → hotovo). `upload-pages-artifact` → `deploy-pages`.
+15. **Vlastní web za 5 minut.** 4 kroky, „bez jediného příkazu v terminálu“.
+16. **Živé demo.** „Co tam mám napsat?“ → editor → `git add .` `git commit -m "živě z hodiny"` `git push` → Actions → refresh → `git revert HEAD` + `git push`. Během čekání klik: meme „U mě to funguje.“ → „Tak pošleme do produkce tvůj počítač.“ (notebook do krabice) → „přesně tohle dělá Docker“. Záloha: klávesa B.
+17. **Pátek 16:59.** `git push --force origin main` → alarm, „PRODUKCE NEJEDE“, notifikace. Klik: „Příště `git push --force-with-lease`. A v pátek radši nic.“ (`--force` přepíše historii na serveru.)
+18. **Na co Pages je a na co ne.** Jen statické weby (HTML, CSS, JS), max. 1 GB. Databáze, přihlašování, PHP ne.
+19. **Copilot.** Napíšu komentář „napiš mi celou maturitní práci“ → Copilot navrhne „TODO: napiš si ji sám“ → Tab.
+20. **Student Developer Pack.** GitHub Pro, Copilot zdarma, doména na rok. Stačí ověřit, že studuješ.
+21. **Odhalení + QR.** Klik: celá prezentace se odzoomuje do okna prohlížeče na github.io. „Naskenujte si ji. Máte otázky?“
 
 ## Očekávané otázky
-- Proč deploy přes Actions, a ne z větve? Actions dovolí build krok. Deploy z větve prožene soubory Jekyllem, proto `.nojekyll`.
-- Merge, nebo rebase? Merge zachová historii (commit se dvěma rodiči). Rebase přepíše commity na nový základ – na sdílené větvi nikdy.
-- `git push --force`? Přepíše historii na serveru. Bezpečnější `--force-with-lease`; na main se chyba opravuje `git revert`.
-- Vlastní doména? DNS CNAME na jméno.github.io (subdoména), doména v nastavení Pages, Enforce HTTPS.
-- Proč ne Vercel/Netlify? Umí serverové funkce a náhledy pro PR. Na statický web je Pages nejjednodušší.
-- Je veřejné repo bezpečné? Kód je vidět, takže žádné klíče v repozitáři ani ve frontendu.
+- **Proč Actions, a ne deploy z větve?** Actions dovolí build krok; deploy z větve prožene soubory Jekyllem (proto `.nojekyll`).
+- **Merge, nebo rebase?** Merge zachová historii (dva rodiče). Rebase přepíše commity na nový základ – na sdílené větvi nikdy.
+- **`git push --force`?** Přepíše historii na serveru. Bezpečnější `--force-with-lease`; na main se chyba opravuje `git revert`.
+- **Vlastní doména?** DNS CNAME na `jméno.github.io`, doména v nastavení Pages, Enforce HTTPS.
+- **Proč ne Vercel/Netlify?** Umí serverové funkce a náhledy pro PR. Na statický web je Pages nejjednodušší.
+- **Je veřejné repo bezpečné?** Kód je vidět – žádné klíče v repozitáři ani ve frontendu.
 - Nevíš-li: „Tohle jsem v praxi nezkoušel.“
 
 ## Zdroje
-- GitHub Octoverse 2025 – 180+ mil. vývojářů, 630 mil. repozitářů, ~1 mld. commitů v 2025.
+- GitHub Octoverse 2025 – 180+ mil. vývojářů, 630 mil. repozitářů, ~1 mld. commitů v 2025, nový vývojář každou sekundu.
+- Git 2005 (Linus Torvalds), GitHub 2008, Microsoft 2018 (7,5 mld. $), Actions GA 2019, Copilot 2021.
 - Limity GitHub Pages – max. 1 GB, 100 GB přenosu měsíčně.
-- GitHub Student Developer Pack.
-- GSAP – zdarma včetně všech pluginů.
+
+## Jak to je postavené
+- Deck: `index.html`, `js/deck.js` (engine: pozastavená GSAP timeline na slide, stopy s0…sN), `js/slides.js` (animace), `css/deck.css`.
+- Filmy: `film/coldopen` (HyperFrames, render `npx hyperframes render`), `film/historie` (Remotion, `npx remotion render Historie`). Výstupy v `assets/*.mp4`.
+- Kontrola: `node tools/qa.cjs …` projde každý krok tam i zpět, porovná snímky a měří zaseknuté animace.
