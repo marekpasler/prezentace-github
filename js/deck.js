@@ -21,22 +21,20 @@
   const NS = 'http://www.w3.org/2000/svg';
   const y0 = 120, y1 = 960, dy = (y1 - y0) / (order.length - 1);
   const ln = document.createElementNS(NS, 'line');
-  Object.entries({ x1: 56, x2: 56, y1: y0, y2: y1 }).forEach(([k, v]) => ln.setAttribute(k, v));
+  Object.entries({ x1: 110, x2: 110, y1: y0, y2: y1 }).forEach(([k, v]) => ln.setAttribute(k, v));
   rail.append(ln);
   const nodes = order.map((_, i) => {
     const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', 56); c.setAttribute('cy', y0 + i * dy); c.setAttribute('r', 10);
+    c.setAttribute('cx', 110); c.setAttribute('cy', y0 + i * dy); c.setAttribute('r', 10);
     rail.append(c); return c;
   });
   const moveHead = (el, i, instant) => {
     const d = instant || REDUCED ? 0 : 1;
     nodes.forEach((n, k) => { n.classList.toggle('done', k < i); n.classList.toggle('head', k === i); });
-    gsap.to(head, { y: y0 + i * dy - 20, duration: .6 * d, ease: 'expo.out' });
+    gsap.to(head, { y: y0 + i * dy - 20, duration: .6 * d, ease: 'power3.out' });
     // films own the whole frame, so the rail steps aside
     const showRail = !el.hasAttribute('data-norail');
     gsap.to([rail, head, grid], { autoAlpha: showRail ? 1 : 0, duration: .35 * d });
-    // ambient layer: the dot grid drifts against the direction of travel
-    gsap.to(grid, { backgroundPosition: `${-i * 64}px ${i * 20}px`, duration: .9 * d, ease: 'power2.out' });
   };
 
   // ---------- slide lifecycle ----------
@@ -76,7 +74,7 @@
       gsap.killTweensOf(prevEl);
       if (instant || REDUCED) hide(prevEl, p);
       // exit is shorter and smaller than the entrance: attention is already moving on
-      else gsap.to(prevEl, { y: -24, autoAlpha: 0, duration: .3, ease: 'power2.in', onComplete: () => { if (all[cur] !== prevEl) hide(prevEl, p); } });
+      else gsap.to(prevEl, { y: -24, autoAlpha: 0, duration: .3, ease: 'power3.in', onComplete: () => { if (all[cur] !== prevEl) hide(prevEl, p); } });
     }
     cur = all.indexOf(el);
     const s = get(el);
@@ -90,8 +88,8 @@
     history.replaceState(null, '', '#' + (vis >= 0 ? vis + 1 : el.dataset.id));
     document.getElementById('sr').textContent = `${el.getAttribute('aria-label')}${vis >= 0 ? `, slide ${vis + 1} z ${order.length}` : ''}`;
     if (instant || REDUCED) { gsap.set(el, { autoAlpha: 1, y: 0 }); goStep(s, step, true); return; }
-    entering = gsap.fromTo(el, { y: 32, autoAlpha: 0 }, {
-      y: 0, autoAlpha: 1, duration: .55, delay: prevEl ? .18 : 0, ease: 'expo.out',
+    entering = gsap.fromTo(el, { y: 24, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: el.hasAttribute('data-act') ? 1.2 : .6, delay: prevEl ? .15 : 0, ease: 'power3.out',
       onStart: () => { atEnd ? goStep(s, step, true) : goStep(s, step); },
       onComplete: () => { entering = null; },
     });
@@ -152,5 +150,5 @@
     show(start, { instant: true });
   });
 
-  window.DECK = { next, prev, show, order, get state() { return { slide: all[cur]?.dataset.id, step, playing: !!(playing && playing.progress() < 1) || !!entering } } };
+  window.DECK = { next, prev, show, order, get state() { return { slide: all[cur]?.dataset.id, step, last: cur >= 0 && step === get(all[cur]).labels.length - 1, playing: !!(playing && playing.progress() < 1) || !!entering } } };
 })();

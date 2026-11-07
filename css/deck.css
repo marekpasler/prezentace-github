@@ -58,7 +58,7 @@ body.hide-cursor { cursor: none; }
 #rail circle { fill: var(--bg); stroke: var(--line); stroke-width: 4; }
 #rail circle.done { fill: var(--mint-dim); stroke: var(--mint-dim); }
 #rail circle.head { fill: var(--mint); stroke: var(--mint); }
-#rail-head { position: absolute; left: 86px; top: 0; font: 600 22px var(--mono); color: var(--bg); background: var(--mint); padding: 4px 10px; border-radius: 6px; white-space: nowrap; z-index: 6; }
+#rail-head { position: absolute; left: 128px; top: 0; font: 600 28px var(--mono); color: var(--bg); background: var(--mint); padding: 3px 4px; border-radius: 6px; white-space: nowrap; z-index: 6; }
 
 /* ---------- type ---------- */
 .display { font-weight: 700; font-size: 168px; line-height: .98; letter-spacing: -.035em; }
@@ -121,9 +121,8 @@ body.hide-cursor { cursor: none; }
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: none; z-index: 20;
 }
 #help.on { display: block; }
-#rotate { display: none; }
 @media (orientation: portrait) and (max-width: 700px) {
-  #rotate { display: grid; place-items: center; position: fixed; inset: 0; z-index: 30; padding: 24px; background: var(--bg); color: var(--ink); font: 600 24px/1.4 var(--sans); text-align: center; }
+  #rotate { display: grid !important; place-items: center; position: fixed; inset: 0; z-index: 30; padding: 24px; background: var(--bg); color: var(--ink); font: 600 24px/1.4 var(--sans); text-align: center; }
 }
 :focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
 
@@ -133,15 +132,11 @@ body.hide-cursor { cursor: none; }
 #grid {
   position: absolute; inset: -80px; pointer-events: none; opacity: .32;
   background-image: radial-gradient(var(--line) 1.6px, transparent 1.6px);
-  background-size: 48px 48px; will-change: transform;
+  background-size: 48px 48px;
 }
 .film { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; background: var(--bg); }
 .t-mask .tw { display: inline-block; }
 .t-mask .tl { overflow: hidden; padding: .14em 0 .1em; margin: -.14em 0 -.1em; }
-
-/* conflict collision */
-.conflict .cf { position: absolute; left: 220px; top: 340px; font-size: 46px; line-height: 1.6; }
-.conflict .boom { position: absolute; left: 960px; top: 540px; width: 40px; height: 40px; margin: -20px; border-radius: 50%; border: 6px solid var(--ink); opacity: 0; }
 
 /* pull request card */
 .prcard { position: absolute; left: 220px; top: 250px; width: 1480px; border: 3px solid var(--line); border-radius: 22px; background: var(--surface); padding: 48px 56px; }
@@ -171,14 +166,7 @@ body.hide-cursor { cursor: none; }
 .rc-btn.star.on { border-color: #d29922; }
 .rc-btn.star.on .ic { fill: #e3b341; color: #e3b341; }
 .rc-btn b { padding: 0 14px; border-radius: 999px; background: var(--line); font-weight: 600; }
-.fork-pr { position: absolute; left: 1290px; top: 880px; font-size: 40px; color: var(--muted); }
-
-/* friday */
-.alarm { position: absolute; inset: 0; background: #da3633; opacity: 0; pointer-events: none; mix-blend-mode: screen; }
-.fr-down { font: 700 128px/1 var(--sans); letter-spacing: -.03em; color: var(--del); opacity: 0; }
-.toasts { position: absolute; right: 80px; top: 90px; width: 640px; display: grid; gap: 16px; }
-.toast { border: 3px solid var(--line); border-left: 10px solid var(--del); border-radius: 14px; background: var(--surface); padding: 16px 26px; font-size: 40px; line-height: 1.25; }
-.toast b { display: block; font-size: 30px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.fork-pr { position: absolute; left: 1060px; top: 860px; font-size: 40px; color: var(--muted); }
 
 /* copilot editor */
 .editor { position: absolute; left: 220px; top: 280px; width: 1480px; border: 3px solid var(--line); border-radius: 20px; background: var(--surface); overflow: hidden; }
@@ -187,9 +175,11 @@ body.hide-cursor { cursor: none; }
 .ed-ln { white-space: pre; }
 .ed-no { display: inline-block; width: 2.2em; color: #6e7681; }
 .cm { color: #8b949e; }
-.ghost { color: #6e7681; font-style: italic; }
-.ghost.accepted { color: #8b949e; font-style: normal; }
+.ghost { color: #8b949e; font-style: italic; }
 
-@media (prefers-reduced-motion: reduce) {
-  #grid { transition: none; }
-}
+/* ---------- v3: trust labels, panels, numbers ---------- */
+.chip { font: 600 32px/1 var(--sans); color: var(--muted); border: 2px solid var(--line); border-radius: 999px; padding: 10px 22px; }
+.src { font: 400 32px/1.3 var(--sans); color: var(--muted); }
+.panel { background: var(--surface); border: 3px solid var(--line); border-radius: 20px; padding: 48px; }
+.big { font-weight: 700; font-size: 150px; line-height: 1; letter-spacing: -.035em; white-space: nowrap; }
+.big .u { font-size: .42em; letter-spacing: 0; }

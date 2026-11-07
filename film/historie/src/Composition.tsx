@@ -23,12 +23,12 @@ const C = {
 
 // Facts only; each one is said out loud in SCRIPT.md
 const MILESTONES = [
-  { year: 2005, title: "Git", line: "Linus Torvalds ho píše pro jádro Linuxu" },
-  { year: 2008, title: "GitHub", line: "Git v cloudu: repozitáře, profily, Pages" },
-  { year: 2018, title: "Microsoft", line: "kupuje GitHub za 7,5 miliardy dolarů" },
-  { year: 2019, title: "Actions", line: "robot, který po pushi sám sestaví a nasadí" },
-  { year: 2021, title: "Copilot", line: "AI, která doplňuje kód" },
-  { year: 2025, title: "180+ milionů", line: "vývojářů, každou sekundu jeden nový" },
+  { year: 2005, title: "Git", line: "napsal ho Linus Torvalds pro vývoj jádra Linuxu" },
+  { year: 2008, title: "GitHub", line: "veřejný start: Git v cloudu, profily, Pages" },
+  { year: 2018, title: "Microsoft", line: "kupuje GitHub za 7,5 mld. $ (v akciích)" },
+  { year: 2019, title: "Actions", line: "obecně dostupné: build a nasazení po každém pushi" },
+  { year: 2021, title: "Copilot", line: "technický preview AI, která doplňuje kód" },
+  { year: 2025, title: "180+ milionů", line: "vývojářů, v průměru víc než 1 nový za sekundu" },
 ];
 
 const FPS = 30;
@@ -124,9 +124,10 @@ const History: React.FC = () => {
         {yearAt}
       </div>
       <div style={{ position: "absolute", right: 140, top: 120, fontSize: 44, color: C.muted, opacity: intro }}>Příběh GitHubu</div>
+      <div style={{ position: "absolute", left: 140, bottom: 64, fontSize: 32, color: C.muted, opacity: intro }}>Zdroje: git-scm.com, github.blog, blogs.microsoft.com, GitHub Octoverse 2025</div>
 
       {/* the track: one commit per milestone */}
-      <div style={{ position: "absolute", left: 0, top: 620, transform: `translateX(${trackX}px)` }}>
+      <div style={{ position: "absolute", left: 0, top: 540, transform: `translateX(${trackX}px)` }}>
         <div style={{ position: "absolute", left: -2000, top: -3, width: 2000 + GAP * MILESTONES.length + 2000, height: 6, background: C.line }} />
         <div style={{ position: "absolute", left: 0, top: -4, width: lineDraw, height: 8, background: C.mint, borderRadius: 4 }} />
         {MILESTONES.map((m, i) => {
@@ -138,8 +139,7 @@ const History: React.FC = () => {
             easing: Easing.bezier(0.05, 0.7, 0.1, 1),
           });
           const active = frame >= at && (frame < at + STEP || i === MILESTONES.length - 1);
-          const past = frame >= at + STEP && i < MILESTONES.length - 1;
-          const dim = past ? 0.45 : 1;
+          const dim = i === MILESTONES.length - 1 ? 1 : interpolate(frame, [at + STEP - 4, at + STEP + 12], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
           return (
             <div key={m.year} style={{ position: "absolute", left: i * GAP, top: 0 }}>
               {/* secondary: a ring that expands once as the commit lands */}
@@ -174,7 +174,7 @@ const History: React.FC = () => {
                   position: "absolute",
                   left: -10,
                   top: 70,
-                  width: GAP - 120,
+                  width: GAP - 40,
                   opacity: reveal * dim,
                   transform: `translateY(${(1 - reveal) * 40}px)`,
                 }}
