@@ -45,8 +45,8 @@ const film = (el, seconds) => {
 };
 
 window.SLIDES = {
-  /* 1 — HyperFrames film: terminal push, digital rain, the URL */
-  cold(el) { return film(el, 8.5); },
+  /* 1 — HyperFrames film: git push becomes a commit, travels computer → GitHub → web, opens the live site */
+  cold(el) { return film(el, 10); },
 
   /* 2 — question to the room, then the folder everyone has */
   zips(el) {
@@ -60,7 +60,7 @@ window.SLIDES = {
   },
 
   /* 3 — Remotion film: 2005 → 2025 (click to play, like the cold open) */
-  story(el) { return film(el, 15.5); },
+  story(el) { return film(el, 28); },
 
   /* 4 — Git = camera, GitHub = album: one snapshot travels */
   gitvs(el) {

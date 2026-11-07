@@ -6,11 +6,11 @@
 
 Ahoj, jsem Marek. Dneska mluvím o GitHubu a GitHub Pages. Nebudu z toho dělat teorii, budu ukazovat věci, které jsem sám dělal.
 [KLIK]
-(film běží 8,5 s, mlčím a nechám ho doběhnout)
-Tohle je web našeho maturitního plesu, třídy 8.A8, téma Matrix. Běží zadarmo a nonstop a nasadil jsem ho jedním příkazem. Do konce prezentace budete vědět, jak na to. Já jsem to zjišťoval sám a trvalo mi to dlouho, vy to zvládnete za pár minut. Nejdřív ale potřebujete vědět, proč to vůbec existuje. Bez toho je ten příkaz jen kouzlo, které funguje, a vy nevíte proč.
+(film běží 10 s, mlčím a nechám ho doběhnout)
+Tohle, co jste právě viděli, se doopravdy stalo. Napsal jsem git push. Moje změna odjela z mého počítače na GitHub a odtamtud rovnou na web. A tohle je ten web: stránka našeho maturitního plesu, třídy 8.A8, téma Matrix. Běží zadarmo a nonstop a nasadil jsem ho jedním příkazem. Do konce prezentace budete vědět, jak na to. Já jsem to zjišťoval sám a trvalo mi to dlouho, vy to zvládnete za pár minut. Nejdřív ale potřebujete vědět, proč to vůbec existuje. Bez toho je ten příkaz jen kouzlo, které funguje, a vy nevíte proč.
 [KLIK → další slide]
 
-## 2. final_final.zip — 00:49
+## 2. final_final.zip — 00:54
 
 Kdo z vás má na disku něco takového? (zvednout ruku, počkat na ruce) Ať se nikdo nestydí. Taky jsem to měl.
 [KLIK]
@@ -18,15 +18,22 @@ Kdo z vás má na disku něco takového? (zvednout ruku, počkat na ruce) Ať se
 Web.zip, web_final.zip, web_final2.zip a web_OPRAVDU_final.zip. Tohle vznikne, když na něčem pracuje víc lidí, nebo jeden člověk po nocích. Teď si představte pět lidí, každý má jinou verzi a každý si myslí, že jeho je ta správná. Kdo má tu poslední? Nikdo. A ten, kdo to pak slučuje ručně, nemá dobrou náladu. Nejhorší na tom je, že nikdo přesně neví, co která verze obsahuje. Není to jen o souborech. Je to hádání.
 [KLIK → další slide]
 
-## 3. Příběh GitHubu — 01:39
+## 3. Příběh GitHubu — 01:44
 
 Krátká historie, ať víte, odkud to je.
 [KLIK]
-(film 15,5 s, přes něj mluvím jen krátce, každý letopočet cca 2 s)
-2005. Git vytvořil Linus Torvalds kvůli vývoji jádra Linuxu. 2008. GitHub se otevřel veřejnosti. 2018. Microsoft ho koupil za 7,5 miliardy dolarů v akciích. 2019. Actions se dostaly do běžného provozu. 2021. Copilot v technickém náhledu. A 2025: podle Octoverse přes 180 milionů vývojářů a v průměru víc než jeden nový za sekundu. Git vznikl pro jeden velký projekt, jádro Linuxu. Dneska ho používají všichni, kdo něco programují, včetně mě. Většina lidí si pod Gitem ve skutečnosti představí GitHub.
+(film 28 s, šest kapitol po 4,5 s; každou větu začnu, až se kapitola ustálí)
+Rok 2005. Git napsal Linus Torvalds, protože potřeboval nástroj pro vývoj jádra Linuxu.
+2008. GitHub se otevřel veřejnosti. Git, ale v cloudu.
+2018. Microsoft GitHub koupil za 7,5 miliardy dolarů, zaplatil v akciích.
+2019. Přišly Actions. Po každém pushi se web sám sestaví a nasadí.
+2021. Copilot, zatím jako technický náhled. AI, která doplňuje kód.
+A 2025: podle zprávy Octoverse přes 180 milionů vývojářů. V průměru víc než jeden nový za sekundu.
+[pauza 2 s]
+Git vznikl pro jeden velký projekt, jádro Linuxu. Dneska ho používají všichni, kdo něco programují, včetně mě. Většina lidí si pod Gitem ve skutečnosti představí GitHub.
 [KLIK → další slide]
 
-## 4. Git vs GitHub — 02:26
+## 4. Git vs GitHub — 02:29
 
 Zjednodušeně: Git je foťák v tvém počítači a GitHub je album na internetu. Prázdné místo v albu vidíte na slidu.
 [KLIK]
@@ -34,7 +41,7 @@ Zjednodušeně: Git je foťák v tvém počítači a GitHub je album na internet
 Přesněji: Git je program, který ukládá snímky projektu přímo do vaší složky. Tomu snímku se říká commit. GitHub je služba na serveru, kam ty repozitáře nahrajete. Přidává k tomu spolupráci, pull requesty a Pages. Git funguje i bez internetu, GitHub bez Gitu ne. Lidi často mluví o GitHubu jako o všem dohromady. Proto to rozlišuju hned na začátku, ať se to pak neplete.
 [KLIK → další slide]
 
-## 5. Jak jsem to dělal dřív — 03:04
+## 5. Jak jsem to dělal dřív — 03:07
 
 Jak jsem to dělal dřív? Poslal jsem web mailem jako zip. Furt dokola.
 [KLIK]
@@ -45,7 +52,7 @@ GitHub. Tady to začíná dávat smysl.
 A GitHub Pages, to je dnešní téma. Mozek na obrázku se rozsvítil úplně. Každý krok je pohodlnější než předchozí, a to je celý smysl. Mezi zipem a GitHub Pages je jen pár kroků, ne pět věcí k zapamatování.
 [KLIK → další slide]
 
-## 6. Repozitář — 03:33
+## 6. Repozitář — 03:36
 
 Tohle je složka plesoktava. Vypadá jako každá jiná. Nahoře máte assets, CNAME, apple-touch-icon.png, event.ics, soubor google s příponou html, index.html a og-image.jpg.
 [KLIK]
@@ -60,7 +67,7 @@ Uvnitř je skrytá složka .git. Tady je ta paměť. Jsou tam všechny verze sou
 Zjednodušeně: .git je paměť projektu. Přesněji: je to databáze. Obsahuje objekty, tedy soubory, složky a commity, a reference, tedy názvy větví, které ukazují na konkrétní commit. Do té složky ručně nesahejte.
 [KLIK → další slide]
 
-## 7. Commit — 04:31
+## 7. Commit — 04:34
 
 Commit je jako uložená pozice ve hře. Podívejte se na jeden řádek v index.html. Starý text zněl: Lístky prodáváme osobně ve škole, nebo se domluv s někým z 8.A8.
 [KLIK]
@@ -75,7 +82,7 @@ Git uloží snímek celého projektu. Diff si jen dopočítá.
 Zjednodušeně: commit je snímek. Přesněji: je to snímek celého stromu souborů, odkaz na předchozí commit, jméno autora a zpráva. Identifikuje se SHA-1 hashem. SHA-256 je zatím experimentální.
 [KLIK → další slide]
 
-## 8. Undo pro celý projekt — 05:29
+## 8. Undo pro celý projekt — 05:32
 
 Každý z vás zná Ctrl+Z. Tady je to ve Wordu, vlevo. Já jsem to v jednom projektu zmáčkl tolikrát, že jsem přestal počítat.
 [KLIK]
@@ -87,7 +94,7 @@ V Gitu to je jinak. Napíšete git revert HEAD. Jeden příkaz, který vytvoří
 Zjednodušeně: revert je undo. Přesněji: revert nepřepisuje historii, vytvoří nový commit, který změnu vrátí. Git reset je jiný příkaz a historii přepisuje, proto je na sdílené větvi nebezpečný.
 [KLIK → další slide]
 
-## 9. Historie webu — 06:15
+## 9. Historie webu — 06:18
 
 Tady je moje historie za třicet dní. Čtyřicet dva commitů od 7. 10. do 6. 11. 2026. Časová osa je skutečná. Nic jsem si nevymyslel. Stačí spustit git log a uvidíte totéž, jen ten výpis bude delší. Tohle není reklama na commity. Je to jen záznam toho, co se stalo.
 [KLIK]
@@ -98,7 +105,7 @@ Třináctého října mezi 13:59 a 14:02 jsem dělal Create, Delete, Create CNAM
 Čtrnáctého října v 23:05 oprava v noci. Patička stránky týden ukazovala rok 2027. Opravil jsem to na 2026. Za chybu se nestydím, ale v historii zůstane.
 [KLIK → další slide]
 
-## 10. Co uvidí učitel, když otevře můj repozitář — 07:11
+## 10. Co uvidí učitel, když otevře můj repozitář — 07:14
 
 Tohle je git log z večera 14. 10. Commity od 21:07 do 23:05. Podívejte se, většina se jmenuje Update index.html. Pane učiteli, vy to asi viděl jako první.
 [KLIK]
@@ -109,7 +116,7 @@ Tady je ten 23:05, ten s patičkou. Zpráva nic neříká. Není to katastrofa, 
 Spočítal jsem to takhle: git log, oneline, grep na Update index.html a wc -l. Výsledek je 19. Devatenáct ze čtyřiceti dvou commitů se jmenuje stejně. Zprávy commitů jsou veřejné a zůstanou. Pište je tak, aby je pochopil i někdo, kdo na projektu nikdy nebyl. Je to jako pověsit deník na nástěnku ve škole. Já jsem ho tam pověsil sám.
 [KLIK → další slide]
 
-## 11. Kdo to rozbil? — 08:01
+## 11. Kdo to rozbil? — 08:04
 
 Teď nepříjemnější část. git blame ukazuje, kdo naposledy změnil který řádek. Tady jsou tři řádky z index.html.
 [KLIK]
@@ -120,7 +127,7 @@ Podívejte se na autora. Na každém řádku stejné jméno: marekpasler.
 Dalo by se to říct i takhle. 818 z 818 řádků index.html jsem napsal já. Zjednodušeně: blame hledá viníka. Přesněji: ukazuje poslední commit, který daný řádek změnil. Neříká proč. Na to se musíte podívat do zprávy commitu. Takže blame není trest. Je to mapa, kdo a kdy co napsal. Vy si to můžete zkusit na libovolném souboru ve svém repozitáři, nic se tím nerozbije.
 [KLIK → další slide]
 
-## 12. Větev = ukazatel na commit — 08:43
+## 12. Větev = ukazatel na commit — 08:46
 
 Větev je ukazatel na commit, který se posouvá s každým novým commitem. Tohle je ilustrace. Větev nove-menu jsem si pro ukázku vymyslel, moje reálná historie takhle nevypadá.
 [KLIK]
@@ -135,7 +142,7 @@ A teď konflikt. Dvě větve změnily stejný řádek a Git nemá jak rozhodnout
 Zjednodušeně: větev je ukazatel. Přesněji: jméno, které ukazuje na konkrétní commit. HEAD je ukazatel na místo, kde právě jste. Merge commit má dva rodiče. Konflikt nastane, když obě větve změnily stejné řádky.
 [KLIK → další slide]
 
-## 13. Pull request = „mrkni mi na to“ — 09:47
+## 13. Pull request = „mrkni mi na to“ — 09:50
 
 Zjednodušeně: pull request je „mrkni mi na to“. Přesněji: návrh, aby se větev sloučila do jiné, s review a s automatickými kontrolami. Tahle karta je ilustrace. Nové menu z větve nove-menu chci dostat do main. Běží kontroly, třeba testy nebo build. Člověk do toho nezasahuje, dokud nejsou zelené.
 [KLIK]
@@ -146,7 +153,7 @@ Kontroly prošly. Reviewer schválil změny. Tlačítko merge se rozsvítilo.
 Merged. Hotovo. Větev nove-menu je v main a nové menu se tím dostalo na web. Pull request je funkce GitHubu, ne Gitu. Git sám o pull requestech neví.
 [KLIK → další slide]
 
-## 14. Open source: fork a hvězdička — 10:26
+## 14. Open source: fork a hvězdička — 10:29
 
 Tady je karta repozitáře. Hvězdiček nula, forků nula. Ilustrace, čísla nejsou živá.
 [KLIK]
@@ -159,14 +166,14 @@ Forkem si udělám kopii na svůj účet. Můžu v ní cokoliv upravit a nikoho 
 Upravím to a pošlu zpátky jako pull request. Takhle funguje open source: vezmu kopii, upravím ji a navrhnu změnu autorovi. Autor se rozhodne, jestli to vezme. Do jeho projektu nikdo nesahá bez svolení, což je fér.
 [KLIK → další slide]
 
-## 15. GitHub v číslech — 11:07
+## 15. GitHub v číslech — 11:10
 
 Pár čísel z Octoverse 2025, to je roční report GitHubu. Přes 180 milionů vývojářů. 630 milionů repozitářů. Skoro miliarda commitů za jediný rok. Čísla se každý rok mění, takže až si je budete dohledávat, budou jiná. Já jsem použil report z roku 2025. Na slidu je odhad, tak si ho neplette s oficiálním číslem.
 Zvedněte ruku, kdo z vás má účet na GitHubu. (počkat na ruce, ukázat na počítadlo v rohu)
 Počítadlo je odhad. Počítá, kolik nových vývojářů přibylo od začátku tohohle slidu, podle průměru víc než jeden za sekundu. Jen odhad, ne měření.
 [KLIK → další slide]
 
-## 16. GitHub Pages = web z repozitáře — 11:56
+## 16. GitHub Pages = web z repozitáře — 11:59
 
 Tohle jsou soubory z repozitáře: index.html, CNAME, event.ics, og-image.jpg a složka assets. A tohle je prázdné okno prohlížeče na adrese 8a8.gkolin.cz.
 [KLIK]
@@ -175,7 +182,7 @@ Pages vezme soubory z repozitáře a servíruje je jako web. Zdarma, s HTTPS. V�
 Zjednodušeně: repozitář se stane webem. Přesněji: Pages servíruje statické soubory z vybrané větve nebo složky, a vlastní doména se na ně napojí přes CNAME a DNS záznam.
 [KLIK → další slide]
 
-## 17. Od pushe k živému webu — 12:49
+## 17. Od pushe k živému webu — 12:52
 
 Co se stane po git push? Podívejte se na tři bloky.
 [KLIK]
@@ -190,7 +197,7 @@ Web je živě. U plesového webu to ale dělám jinak. Mám nastaveno Deploy fro
 Zjednodušeně: push spustí nasazení. Přesněji: workflow běží na runneru, nahraje artefakt a nasadí ho. Při větvi se na pozadí pustí stejný mechanismus, jen ho nevidíte ve vlastním souboru.
 [KLIK → další slide]
 
-## 18. Vlastní web za pár minut — 14:03
+## 18. Vlastní web za pár minut — 14:06
 
 Jestli chcete mít vlastní web, postup je krátký.
 [KLIK]
@@ -208,7 +215,7 @@ Tři. Nahrát index.html. Hotovo, soubor se dá otevřít. Chcete hezčí web? P
 Jen na čtvrtý krok nezapomeňte. Já jsem na něj zapomněl a hodinu jsem koukal na chybovou stránku. Pokud to nefunguje, zkontrolujte, jestli je soubor index.html v kořeni repozitáře a jestli je nastavená správná větev.
 [KLIK → další slide]
 
-## 19. Živé demo — 14:44
+## 19. Živé demo — 14:47
 
 Teď to zkusíme naživo. Co tam mám napsat? Řekněte mi jednu větu, co změním na plesovém webu. (počkat na návrh, vybrat jeden)
 Dobře, tohle je dobrý nápad. Přepínám do editoru.
@@ -229,7 +236,7 @@ Git revert HEAD, pak push. Jeden příkaz, nový commit, který změnu vrátí. 
 (Pokud by nešlo Wi-Fi: stisknout B a říct: „Pro jistotu jsem si to natočil.“)
 [KLIK → další slide]
 
-## 20. Na co Pages je a na co ne — 16:40
+## 20. Na co Pages je a na co ne — 16:43
 
 Co na Pages jde? Ano: plesový web, portfolio, dokumentace, tahle prezentace. Všechno, co je statické, tedy HTML, CSS a JavaScript.
 [KLIK]
@@ -240,7 +247,7 @@ Limity najdete v dokumentaci GitHubu. Web má maximálně 1 GB. Přenos 100 GB z
 Zjednodušeně: statický web znamená, že server nic nepočítá a jen posílá soubory. Přesněji: prohlížeč si spustí JavaScript sám a server vydá hotový soubor.
 [KLIK → další slide]
 
-## 21. Copilot navrhuje, já rozhoduju — 17:36
+## 21. Copilot navrhuje, já rozhoduju — 17:39
 
 Tady je soubor soucet.js. Prázdný, to je začátek.
 [KLIK]
@@ -255,7 +262,7 @@ Zmáčknu Tab a přijmu ho. Zodpovědnost za kód ale zůstává na mně. Vždyc
 Zjednodušeně: Copilot píše kód za vás. Přesněji: navrhuje doplnění podle kontextu. Nekontroluje, jestli je správně, a za chyby neručí.
 [KLIK → další slide]
 
-## 22. Student Pack a odhalení — 18:30
+## 22. Student Pack a odhalení — 18:33
 
 GitHub Student Developer Pack. Dostanete GitHub Pro zdarma, dokud studujete. Copilot Student pro ověřené studenty, s limity. A doménu na rok zdarma u partnerů. Ověření studenta je na webu GitHubu, ať to nemusím popisovat přesně.
 [KLIK]
