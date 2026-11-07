@@ -5,3 +5,4 @@ film/*/node_modules/
 film/*/out/
 film/*/.hyperframes/
 film/*/snapshots/
+*.remotion-in-progress
