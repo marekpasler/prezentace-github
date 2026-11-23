@@ -149,13 +149,22 @@
     if (performance.now() - focusedAt < 600) return;
     if (!e.target.closest('video[controls], a')) next();
   });
-  let tx = null;
-  addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  // touch (iPad, phone): tap = next, tap on the left third = back, swipe = next / back.
+  // iOS Safari sends no click for a tap on a plain element, so taps are handled here directly.
+  let tx = null, ty = 0, tt = 0;
+  addEventListener('touchstart', e => {
+    if (e.touches.length > 1) { tx = null; return; }
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY; tt = performance.now();
+  }, { passive: true });
   addEventListener('touchend', e => {
     if (tx === null) return;
-    const dx = e.changedTouches[0].clientX - tx; tx = null;
-    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
-  });
+    const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; tx = null;
+    if (e.target.closest('video[controls], a')) return;
+    e.preventDefault(); // no synthetic click afterwards, so one tap is exactly one step
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) dx < 0 ? next() : prev();
+    else if (Math.abs(dx) < 15 && Math.abs(dy) < 15 && performance.now() - tt < 600) t.clientX < innerWidth / 3 ? prev() : next();
+  }, { passive: false });
+  addEventListener('touchcancel', () => { tx = null; });
   let idle; addEventListener('mousemove', () => { document.body.classList.remove('hide-cursor'); clearTimeout(idle); idle = setTimeout(() => document.body.classList.add('hide-cursor'), 2000); });
   document.body.classList.add('hide-cursor'); // no arrow on the projector until the mouse moves
 
