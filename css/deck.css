@@ -1,0 +1,197 @@
+/* ---------- fonts (local, so the deck works offline) ---------- */
+@font-face { font-family: "Plex Sans"; font-weight: 400; font-display: block; src: url(../vendor/fonts/plex-sans-400-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+@font-face { font-family: "Plex Sans"; font-weight: 400; font-display: block; src: url(../vendor/fonts/plex-sans-400.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "Plex Sans"; font-weight: 600; font-display: block; src: url(../vendor/fonts/plex-sans-600-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+@font-face { font-family: "Plex Sans"; font-weight: 600; font-display: block; src: url(../vendor/fonts/plex-sans-600.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "Plex Sans"; font-weight: 700; font-display: block; src: url(../vendor/fonts/plex-sans-700-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+@font-face { font-family: "Plex Sans"; font-weight: 700; font-display: block; src: url(../vendor/fonts/plex-sans-700.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "Plex Mono"; font-weight: 400; font-display: block; src: url(../vendor/fonts/plex-mono-400-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF, U+2500-257F; }
+@font-face { font-family: "Plex Mono"; font-weight: 400; font-display: block; src: url(../vendor/fonts/plex-mono-400.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "Plex Mono"; font-weight: 600; font-display: block; src: url(../vendor/fonts/plex-mono-600-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF, U+2500-257F; }
+@font-face { font-family: "Plex Mono"; font-weight: 600; font-display: block; src: url(../vendor/fonts/plex-mono-600.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+
+/* ---------- tokens ---------- */
+:root {
+  --bg: #0d1117;       /* GitHub dark canvas */
+  --surface: #161b22;
+  --line: #3d444d;
+  --ink: #f0f6fc;
+  --muted: #b7c0ca;    /* kept light: school projectors crush dark greys */
+  --mint: #5effc4;     /* the ball website's Matrix green */
+  --mint-dim: #1e5c47;
+  --add: #3fb950;  --add-bg: rgba(46, 160, 67, .26);
+  --del: #ff7b72;  --del-bg: rgba(248, 81, 73, .24);
+  --amber: #d29922;    /* GitHub Actions "in progress" */
+  --sans: "Plex Sans", system-ui, sans-serif;
+  --mono: "Plex Mono", ui-monospace, Consolas, monospace;
+  --left: 220px;       /* content starts right of the commit rail */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--bg); color: var(--ink); overflow: hidden; }
+body { font-family: var(--sans); -webkit-font-smoothing: antialiased; cursor: default; }
+body.hide-cursor { cursor: none; }
+
+/* ---------- stage: fixed 1920×1080, scaled to the window ---------- */
+#shell { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 50% 50%; }
+#browser { position: absolute; inset: 0; transform-origin: 50% 50%; }
+#chrome {
+  position: absolute; left: -2px; right: -2px; bottom: 100%; height: 96px; opacity: 0;
+  background: var(--surface); border: 2px solid var(--line); border-bottom: 0; border-radius: 22px 22px 0 0;
+  display: flex; align-items: center; gap: 28px; padding: 0 36px;
+}
+#chrome .dots { display: flex; gap: 14px; }
+#chrome .dots i { width: 22px; height: 22px; border-radius: 50%; background: var(--line); }
+#chrome .url {
+  flex: 1; height: 56px; border-radius: 28px; background: var(--bg); display: flex; align-items: center;
+  padding: 0 32px; font: 400 34px var(--mono); color: var(--muted);
+}
+#chrome .url b { color: var(--ink); font-weight: 600; }
+#viewport { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+
+.slide { position: absolute; inset: 0; visibility: hidden; }
+.slide.active { visibility: visible; }
+
+/* ---------- commit rail (HEAD moves with the deck) ---------- */
+#rail { position: absolute; left: 0; top: 0; width: 180px; height: 1080px; pointer-events: none; z-index: 5; }
+#rail line { stroke: var(--line); stroke-width: 4; }
+#rail circle { fill: var(--bg); stroke: var(--line); stroke-width: 4; }
+#rail circle.done { fill: var(--mint-dim); stroke: var(--mint-dim); }
+#rail circle.head { fill: var(--mint); stroke: var(--mint); }
+#rail-head { position: absolute; left: 128px; top: 0; font: 600 28px var(--mono); color: var(--bg); background: var(--mint); padding: 3px 4px; border-radius: 6px; white-space: nowrap; z-index: 6; }
+
+/* ---------- type ---------- */
+.display { font-weight: 700; font-size: 168px; line-height: .98; letter-spacing: -.035em; }
+.h1 { font-weight: 700; font-size: 112px; line-height: 1.02; letter-spacing: -.03em; }
+.h2 { font-weight: 600; font-size: 72px; line-height: 1.1; letter-spacing: -.02em; }
+.body { font-size: 52px; line-height: 1.3; color: var(--muted); }
+.small { font-size: 40px; line-height: 1.35; color: var(--muted); }
+.mono { font-family: var(--mono); }
+.mint { color: var(--mint); }
+.ink { color: var(--ink); }
+.muted { color: var(--muted); }
+
+/* ---------- reusable bits ---------- */
+.term {
+  font: 400 44px/1.5 var(--mono); color: var(--ink); white-space: pre;
+}
+.term .prompt { color: var(--mint); }
+.caret { display: inline-block; width: .6em; height: 1.1em; background: var(--mint); vertical-align: -.18em; }
+.caret.blink { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.file {
+  position: absolute; display: flex; align-items: center; gap: 28px;
+  font: 400 48px var(--mono); color: var(--ink); background: var(--surface);
+  border: 2px solid var(--line); border-radius: 14px; padding: 22px 34px; white-space: nowrap;
+}
+.file svg { width: 44px; height: 52px; flex: none; }
+
+.tag { display: inline-block; font: 600 34px var(--mono); padding: 6px 16px; border-radius: 8px; background: var(--mint); color: var(--bg); }
+
+.diff { font: 400 38px/1 var(--mono); border: 2px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+.diff .hdr { padding: 24px 32px; color: var(--muted); border-bottom: 2px solid var(--line); font-size: 32px; }
+.diff .row { position: relative; padding: 26px 32px; white-space: pre; }
+.diff .row.del { background: var(--del-bg); }
+.diff .row.add { background: var(--add-bg); }
+.diff .row .sign { display: inline-block; width: 1.4em; }
+.diff .row.del .sign { color: var(--del); }
+.diff .row.add .sign { color: var(--add); }
+
+.stamp {
+  position: absolute; display: flex; align-items: baseline; gap: 36px; padding: 26px 40px;
+  border: 4px solid var(--mint); border-radius: 14px; color: var(--mint); background: var(--bg);
+}
+
+.status { width: 72px; height: 72px; flex: none; }
+.status .spin { transform-box: view-box; transform-origin: 36px 36px; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+.meme { position: absolute; inset: 0; visibility: hidden; }
+
+/* ---------- reduced motion: no loops, timelines jump straight to each step ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .caret.blink, .status .spin { animation: none; }
+}
+
+/* help overlay */
+#help {
+  position: fixed; right: 24px; bottom: 24px; font: 400 16px/1.6 var(--mono); color: var(--muted);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: none; z-index: 20;
+}
+#help.on { display: block; }
+@media (orientation: portrait) and (max-width: 700px) {
+  #rotate { display: grid !important; place-items: center; position: fixed; inset: 0; z-index: 30; padding: 24px; background: var(--bg); color: var(--ink); font: 600 24px/1.4 var(--sans); text-align: center; }
+}
+:focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- v2: ambient grid, films, new memes ---------- */
+#grid {
+  position: absolute; inset: -80px; pointer-events: none; opacity: .32;
+  background-image: radial-gradient(var(--line) 1.6px, transparent 1.6px);
+  background-size: 48px 48px;
+}
+.film { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; background: var(--bg); }
+.t-mask .tw { display: inline-block; }
+.t-mask .tl { overflow: hidden; padding: .14em 0 .1em; margin: -.14em 0 -.1em; }
+
+/* pull request card */
+.prcard { position: absolute; left: 220px; top: 250px; width: 1480px; border: 3px solid var(--line); border-radius: 22px; background: var(--surface); padding: 48px 56px; }
+.pr-top { display: flex; gap: 36px; align-items: flex-start; }
+.pr-state { display: inline-flex; align-items: center; gap: 14px; padding: 12px 28px; border-radius: 999px; background: #238636; color: #fff; font: 600 40px var(--sans); white-space: nowrap; }
+.pr-state svg { width: 40px; height: 40px; }
+.pr-state.merged { background: #8957e5; }
+.pr-title { font: 700 64px/1.1 var(--sans); letter-spacing: -.02em; }
+.pr-sub { margin-top: 14px; font-size: 40px; color: var(--muted); }
+.pr-sub .br { color: var(--ink); background: rgba(56,139,253,.18); padding: 2px 14px; border-radius: 8px; }
+.pr-rows { margin-top: 44px; border-top: 2px solid var(--line); }
+.pr-row { display: flex; align-items: center; gap: 28px; padding: 26px 0; border-bottom: 2px solid var(--line); font-size: 44px; color: var(--muted); }
+.pr-row b { color: var(--ink); }
+.avatar { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: #8957e5; color: #fff; font: 700 36px var(--sans); flex: none; }
+.pr-btn { margin-top: 40px; display: inline-flex; align-items: center; gap: 16px; padding: 20px 40px; border: 0; border-radius: 14px; background: var(--mint); color: var(--bg); font: 700 44px var(--sans); }
+.pr-btn svg { width: 44px; height: 44px; }
+
+/* fork / star */
+.repo-card { position: absolute; width: 860px; border: 3px solid var(--line); border-radius: 20px; background: var(--surface); padding: 40px 48px; }
+.rc-a { left: 220px; top: 290px; }
+.rc-b { left: 900px; top: 610px; border-color: var(--mint); }
+.rc-name { font-size: 52px; font-weight: 600; }
+.rc-sub { margin-top: 12px; font-size: 40px; color: var(--muted); }
+.rc-btns { display: flex; gap: 24px; margin-top: 30px; }
+.rc-btn { display: inline-flex; align-items: center; gap: 14px; padding: 12px 26px; border: 3px solid var(--line); border-radius: 14px; font: 600 40px var(--sans); }
+.rc-btn .ic { width: 40px; height: 40px; fill: none; color: var(--ink); }
+.rc-btn.star.on { border-color: #d29922; }
+.rc-btn.star.on .ic { fill: #e3b341; color: #e3b341; }
+.rc-btn b { padding: 0 14px; border-radius: 999px; background: var(--line); font-weight: 600; }
+.fork-pr { position: absolute; left: 1060px; top: 860px; font-size: 40px; color: var(--muted); }
+
+/* copilot editor */
+.editor { position: absolute; left: 220px; top: 280px; width: 1480px; border: 3px solid var(--line); border-radius: 20px; background: var(--surface); overflow: hidden; }
+.ed-bar { padding: 20px 36px; border-bottom: 3px solid var(--line); font-size: 36px; color: var(--muted); }
+.ed-body { padding: 36px 36px 48px; font-size: 52px; line-height: 1.7; }
+.ed-ln { white-space: pre; }
+.ed-no { display: inline-block; width: 2.2em; color: #6e7681; }
+.cm { color: #8b949e; }
+.ghost { color: #8b949e; font-style: italic; }
+
+/* ---------- v3: trust labels, panels, numbers ---------- */
+.chip { font: 600 32px/1 var(--sans); color: var(--muted); border: 2px solid var(--line); border-radius: 999px; padding: 10px 22px; }
+.src { font: 400 32px/1.3 var(--sans); color: var(--muted); }
+.panel { background: var(--surface); border: 3px solid var(--line); border-radius: 20px; padding: 48px; }
+.big { font-weight: 700; font-size: 150px; line-height: 1; letter-spacing: -.035em; white-space: nowrap; }
+.big .u { font-size: .42em; letter-spacing: 0; }
+
+/* ---------- v4: daily commands, takeaways, black screen ---------- */
+.zone { position: absolute; top: 380px; width: 300px; height: 240px; border: 3px solid var(--line); border-radius: 20px; background: var(--surface); padding: 40px 32px; }
+.zone .zt { font: 600 46px/1.1 var(--sans); }
+.zone .zs { margin-top: 14px; font-size: 36px; line-height: 1.25; color: var(--muted); }
+.cmd { position: absolute; top: 300px; transform: translateX(-50%); font-size: 44px; font-weight: 600; color: var(--mint); white-space: nowrap; }
+.take { margin-top: 90px; display: grid; gap: 40px; }
+.take div { display: flex; align-items: baseline; gap: 48px; }
+.take dt { width: 560px; flex: none; white-space: nowrap; font-size: 64px; font-weight: 600; }
+.take dd { font-size: 64px; color: var(--ink); }
+#black { position: fixed; inset: 0; background: #000; z-index: 50; display: none; }
+#black.on { display: block; }

@@ -1,0 +1,8 @@
+tools/qr.svg
+node_modules/
+film/*/node_modules/
+film/*/out/
+film/*/.hyperframes/
+film/*/snapshots/
+*.remotion-in-progress
+film/previews/
