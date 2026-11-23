@@ -110,7 +110,6 @@ body.hide-cursor { cursor: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 
-.meme { position: absolute; inset: 0; visibility: hidden; }
 
 /* ---------- reduced motion: no loops, timelines jump straight to each step ---------- */
 @media (prefers-reduced-motion: reduce) {

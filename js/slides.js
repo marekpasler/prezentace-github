@@ -392,30 +392,7 @@ window.SLIDES = {
     return { tl };
   },
 
-  /* 19 — live demo, then "works on my machine" → ship the machine */
-  demo(el) {
-    const tl = T(), m = $(el, '.machine');
-    title(tl, $(el, '.base .t-mask'));
-    rise(tl, $(el, '.base .body'), '<.2');
-    tl.step();
-    tl.set([$(m, '.q2'), $(m, '.box'), $(m, '.label'), $(m, '.docker')], { autoAlpha: 0 });
-    tl.to($(el, '.base'), { autoAlpha: 0, y: -RISE, duration: Q, ease: OUT });
-    tl.fromTo(m, { autoAlpha: 0 }, { autoAlpha: 1, duration: Q });
-    rise(tl, [$(m, '.q1'), $(m, '.laptop')], '<');
-    tl.step();
-    tl.to($(m, '.q2'), { autoAlpha: 1, duration: Q }).from($(m, '.q2'), { y: RISE, duration: M }, '<');
-    tl.to($(m, '.box'), { autoAlpha: 1, duration: Q }, '<.2').from($(m, '.box'), { y: RISE * 2, duration: M }, '<');
-    // packing is the joke's mechanism: laptop drops in, lids close, label goes on
-    tl.to($(m, '.laptop'), { y: 170, duration: M, ease: OUT });
-    tl.fromTo($(m, '.fl'), { rotation: -100, svgOrigin: '90 200' }, { rotation: 0, svgOrigin: '90 200', duration: Q });
-    tl.fromTo($(m, '.fr'), { rotation: 100, svgOrigin: '430 200' }, { rotation: 0, svgOrigin: '430 200', duration: Q }, '<.06');
-    tl.to($(m, '.label'), { autoAlpha: 1, duration: Q });
-    tl.to($(m, '.docker'), { autoAlpha: 1, duration: Q }, '+=.3').from($(m, '.docker'), { y: RISE, duration: M }, '<');
-    tl.step();
-    return { tl };
-  },
 
-  backup(el) { return { tl: T(), leave() { $(el, 'video').pause(); } }; },
 
   limits(el) {
     const tl = T();

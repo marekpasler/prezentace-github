@@ -95,16 +95,6 @@
     });
   };
 
-  // hidden backup slide: remember where we came from, go back to the same step
-  const backup = document.querySelector('[data-id="backup"]');
-  let returnTo = null;
-  const toBackup = () => {
-    if (all[cur] === backup) return back();
-    returnTo = { el: all[cur], step };
-    show(backup, { instant: true });
-  };
-  const back = () => { if (returnTo) show(returnTo.el, { instant: true, at: returnTo.step }); returnTo = null; };
-
   const next = () => {
     if (cur < 0) return; // keys before the fonts are ready
     const el = all[cur], s = get(el);
@@ -115,7 +105,6 @@
     if (step < s.labels.length - 1) { step++; goStep(s, step); return; }
     const i = order.indexOf(el);
     if (i >= 0 && i < order.length - 1) show(order[i + 1]);
-    else if (i < 0) back(); // leaving the hidden backup slide
   };
   const prev = () => {
     if (cur < 0) return;
@@ -124,7 +113,6 @@
     if (step > 0) { step--; goStep(s, step, true); return; }
     const i = order.indexOf(el);
     if (i > 0) show(order[i - 1], { atEnd: true, instant: true });
-    else if (i < 0) back();
   };
 
   // ---------- input: keyboard, presenter clickers, mouse, touch ----------
@@ -135,8 +123,6 @@
     else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); prev(); }
     else if (k === 'Home') show(order[0], { instant: true });
     else if (k === 'End') show(order[order.length - 1], { atEnd: true, instant: true });
-    else if (k === 'd' || k === 'D') toBackup();
-    else if (k === 'Escape' && all[cur] === backup) back();
     // clickers' "black screen" button sends b or .
     else if (k === 'b' || k === 'B' || k === '.') document.getElementById('black').classList.toggle('on');
     else if (k === 'f' || k === 'F') (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()).catch(() => {});
