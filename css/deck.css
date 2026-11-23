@@ -197,3 +197,10 @@ body.hide-cursor { cursor: none; }
 .take dd { font-size: 64px; color: var(--ink); }
 #black { position: fixed; inset: 0; background: #000; z-index: 50; display: none; }
 #black.on { display: block; }
+
+/* iPad Safari draws its own play button (a circle in the middle of the screen) over every paused video,
+   even on hidden slides. Films are started by the deck, so that native button is never wanted. */
+.slide:not(.active) video { display: none; }
+.film::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+.film::-webkit-media-controls { display: none !important; }
+.film::-webkit-media-controls-overlay-play-button { display: none !important; }
